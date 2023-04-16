@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 ///
 /// Contient la route actuelle dans l'application
 class NavigationController extends ChangeNotifier {
-  String route = "/connexion";
+  String route = "/explorer";
 
   void changerRoute(String route) {
     this.route = route;
