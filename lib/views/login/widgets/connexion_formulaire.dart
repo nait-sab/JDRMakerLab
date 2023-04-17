@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_auth.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
@@ -39,6 +40,9 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
 
   @override
   Widget build(BuildContext context) {
+    if (UtilisateurController.getUtilisateur(context) == null) {
+      autoLog();
+    }
     return chargement ? Chargement() : _formulaire();
   }
 
@@ -72,8 +76,24 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
     );
 
     // Chargement de l'application
-    _changerRoute("/explorer");
-    setState(() => chargement = !chargement);
+    await chargerProjets();
+    if (mounted) {
+      setState(() => chargement = !chargement);
+      _changerRoute("/explorer");
+    }
+  }
+
+  Future chargerProjets() async {
+    await ProjetController.chargerProjets(
+      context,
+      UtilisateurController.getUtilisateur(context)!,
+    );
+  }
+
+  void autoLog() {
+    mailController.text = "test@gmail.com";
+    passeController.text = "000000";
+    connexion();
   }
 
   /// Widget contenant l'ensemble du formulaire

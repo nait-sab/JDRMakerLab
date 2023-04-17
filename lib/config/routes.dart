@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
+import 'package:jdr_maker/views/jouer/jouer_view.dart';
 import 'package:jdr_maker/views/login/connexion_view.dart';
 import 'package:jdr_maker/views/login/inscription_view.dart';
+import 'package:jdr_maker/views/profil/profil_view.dart';
 import 'package:provider/provider.dart';
 
 /// Classe : Routes
@@ -39,6 +41,22 @@ class Routes {
       // =======================================================
       case "/explorer":
         liste.add(MaterialPage(child: ExplorerView()));
+        break;
+
+      case "/editeur":
+        liste.add(MaterialPage(child: ExplorerView()));
+        break;
+
+      case "/amis":
+        liste.add(MaterialPage(child: ExplorerView()));
+        break;
+
+      case "/jouer":
+        liste.add(MaterialPage(child: JouerView()));
+        break;
+
+      case "/profil":
+        liste.add(MaterialPage(child: ProfilView()));
         break;
     }
 

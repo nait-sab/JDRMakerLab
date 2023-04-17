@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
 import 'package:jdr_maker/views/login/widgets/connexion_formulaire.dart';
 
@@ -18,8 +17,6 @@ class ConnexionView extends StatefulWidget {
 }
 
 class _ConnexionViewState extends State<ConnexionView> {
-  void changerRoute(String route) => NavigationController.changerView(context, route);
-
   @override
   Widget build(BuildContext context) {
     return AppInterface(

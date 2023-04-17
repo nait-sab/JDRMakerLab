@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 
+/// Bouton du menu pour changer de route
 class MenuBouton extends StatefulWidget {
+  /// Texte du bouton
   final String texte;
+
+  /// Icône du bouton
   final IconData icone;
+
+  /// Liste de [routes] à vérifier pour afficher le bouton comme actif ou non
   final List<String> routes;
+
+  /// Action du clic
   final VoidCallback action;
 
   MenuBouton({

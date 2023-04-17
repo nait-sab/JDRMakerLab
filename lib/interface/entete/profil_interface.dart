@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
 class ProfilInterface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Bouton(
-      onTap: () {},
+      onTap: () => NavigationController.changerView(context, "/profil"),
       borderRadius: BorderRadius.circular(50),
       child: Ink(
         width: 200,

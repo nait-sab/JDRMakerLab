@@ -59,7 +59,7 @@ class _MenuInterfaceState extends State<MenuInterface> {
         texte: "Explorer",
         icone: Icons.explore_rounded,
         routes: ["/explorer"],
-        action: () {},
+        action: () => _changerRoute("/explorer"),
       ));
 
       if (ProjetController.getProjet(context) != null) {
@@ -67,7 +67,7 @@ class _MenuInterfaceState extends State<MenuInterface> {
           texte: "Éditeur",
           icone: Icons.home_rounded,
           routes: [],
-          action: () {},
+          action: () => _changerRoute("/editeur"),
         ));
       }
 
@@ -76,13 +76,13 @@ class _MenuInterfaceState extends State<MenuInterface> {
         texte: "Amis",
         icone: Icons.group_rounded,
         routes: [],
-        action: () {},
+        action: () => _changerRoute("/amis"),
       ));
       liste.add(MenuBouton(
         texte: "Jouer",
         icone: Icons.play_arrow_rounded,
-        routes: [],
-        action: () {},
+        routes: ["/jouer"],
+        action: () => _changerRoute("/jouer"),
       ));
 
       liste.add(MenuTitre(texte: "Général"));
@@ -90,7 +90,7 @@ class _MenuInterfaceState extends State<MenuInterface> {
         texte: "Paramètres",
         icone: Icons.settings_rounded,
         routes: [],
-        action: () {},
+        action: () => _changerRoute("/profil"),
       ));
       liste.add(MenuBouton(
         texte: "Déconnexion",

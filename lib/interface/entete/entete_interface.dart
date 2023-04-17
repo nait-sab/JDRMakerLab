@@ -7,15 +7,17 @@ import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/interface/entete/profil_interface.dart';
 import 'package:jdr_maker/interface/entete/recherche_interface.dart';
-import 'package:jdr_maker/interface/entete/selection_interface.dart';
+import 'package:jdr_maker/interface/entete/titre_interface.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/boutons/boutons_desktop.dart';
 
 class EnteteInterface extends StatefulWidget {
   final ProjetController projetController;
+  final VoidCallback actionTitre;
 
   EnteteInterface({
     required this.projetController,
+    required this.actionTitre,
   });
 
   @override
@@ -39,8 +41,9 @@ class _EnteteInterfaceState extends State<EnteteInterface> {
       child: MoveWindow(
         child: Row(
           children: [
-            SelectionInterface(
+            TitreInterface(
               projetController: widget.projetController,
+              action: widget.actionTitre,
             ),
             Expanded(
               child: Row(

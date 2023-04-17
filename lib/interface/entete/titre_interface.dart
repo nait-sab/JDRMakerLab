@@ -6,11 +6,13 @@ import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
-class SelectionInterface extends StatelessWidget {
+class TitreInterface extends StatelessWidget {
   final ProjetController projetController;
+  final VoidCallback action;
 
-  SelectionInterface({
+  TitreInterface({
     required this.projetController,
+    required this.action,
   });
 
   @override
@@ -28,7 +30,7 @@ class SelectionInterface extends StatelessWidget {
 
   Widget renduDynamique() {
     return Bouton(
-      onTap: () {},
+      onTap: action,
       child: SizedBox(
         width: 250,
         height: double.infinity,
