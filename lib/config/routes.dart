@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/views/amis/amis_view.dart';
 import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
 import 'package:jdr_maker/views/jouer/jouer_view.dart';
@@ -49,7 +50,7 @@ class Routes {
         break;
 
       case "/amis":
-        liste.add(MaterialPage(child: ExplorerView()));
+        liste.add(MaterialPage(child: AmisView()));
         break;
 
       case "/jouer":

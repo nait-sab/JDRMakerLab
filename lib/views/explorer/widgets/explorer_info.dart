@@ -42,7 +42,6 @@ class _ExplorerInfoState extends State<ExplorerInfo> {
 
   Future _chargerProjet(ProjetModel projet) async {
     await ProjetController.charger(context, projet);
-    print("done");
   }
 
   Widget _afficherInfo(String message, String texteBouton, VoidCallback action) {
