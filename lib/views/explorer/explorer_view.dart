@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
+import 'package:jdr_maker/views/explorer/widgets/explorer_info.dart';
+import 'package:provider/provider.dart';
 
 class ExplorerView extends StatefulWidget {
   @override
@@ -8,19 +10,24 @@ class ExplorerView extends StatefulWidget {
 }
 
 class _ExplorerViewState extends State<ExplorerView> {
+  late ProjetController projetController;
+
   @override
   Widget build(BuildContext context) {
+    projetController = Provider.of<ProjetController>(context);
+
     return AppInterface(
       child: Container(
+        height: double.infinity,
         margin: EdgeInsets.all(20),
-        color: Colors.amber,
-        child: Center(
-          child: Text(
-            "Explorer",
-            style: TextStyle(
-              color: App.couleurs().important(),
-              fontSize: App.fontSize().titre(),
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ExplorerInfo(
+                projets: projetController.projets,
+                projetActuel: projetController.projet,
+              ),
+            ],
           ),
         ),
       ),

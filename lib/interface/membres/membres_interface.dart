@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/interface/membres/membre_bouton.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 
 class MembresInterface extends StatelessWidget {
