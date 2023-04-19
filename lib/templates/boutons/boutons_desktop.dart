@@ -21,9 +21,9 @@ class BoutonsWindows extends StatelessWidget {
     return WindowButtonColors(
       mouseOver: App.couleurs().fondSecondaire(),
       mouseDown: App.couleurs().fondSecondaire(),
-      iconNormal: Colors.white,
-      iconMouseDown: Colors.white,
-      iconMouseOver: Colors.white,
+      iconNormal: App.couleurs().important(),
+      iconMouseDown: App.couleurs().important(),
+      iconMouseOver: App.couleurs().important(),
     );
   }
 }

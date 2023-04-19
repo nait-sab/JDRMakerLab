@@ -23,8 +23,12 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
           height: 150,
           width: 150,
           decoration: BoxDecoration(
-            color: Colors.white,
             borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.network(
+            widget.utilisateur.imageUrl,
+            width: double.infinity,
+            height: double.infinity,
           ),
         ),
         Align(
@@ -52,7 +56,7 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
         child: Bouton(
           onTap: action,
           borderRadius: BorderRadius.circular(100),
-          couleurHover: Colors.white.withOpacity(0.3),
+          couleurHover: App.couleurs().important().withOpacity(0.3),
           child: Icon(
             icone,
             color: Colors.white,

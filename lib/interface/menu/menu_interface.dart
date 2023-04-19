@@ -106,8 +106,10 @@ class _MenuInterfaceState extends State<MenuInterface> {
   /// Déconnecter l'utilisateur
   Future _deconnexion() async {
     await FirebaseServiceAuth.deconnexion(context);
+    await decharger();
     _changerRoute("/connexion");
   }
 
+  Future decharger() async => await ProjetController.dechargerProjets(context);
   void _changerRoute(String route) => NavigationController.changerView(context, route);
 }

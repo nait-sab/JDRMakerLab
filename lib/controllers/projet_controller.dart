@@ -88,4 +88,19 @@ class ProjetController extends ChangeNotifier {
   static Future chargerProjets(BuildContext context, UtilisateurModel utilisateur) async {
     await Provider.of<ProjetController>(context, listen: false)._chargerProjets(utilisateur);
   }
+
+  // =========================================================
+  // Décharger le projet
+  // =========================================================
+
+  Future _dechargerProjet() async {
+    print("Décharger projet call");
+    projet = null;
+    notifyListeners();
+  }
+
+  /// Charger un projet
+  static Future dechargerProjets(BuildContext context) async {
+    await Provider.of<ProjetController>(context, listen: false)._dechargerProjet();
+  }
 }

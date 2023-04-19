@@ -79,6 +79,9 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
       id: FirebaseServiceAuth.getUtilisateurID(),
       username: pseudo,
       mail: mail,
+      imageUrl:
+          "https://firebasestorage.googleapis.com/v0/b/jdrmakerlab.appspot.com/o/defaut.png?alt=media&token=44435f0a-3992-4d9f-b16f-21c50ce1b266",
+      themeSombre: true,
     );
 
     await FirebaseServiceFirestore.ajouterDocumentID(
@@ -107,7 +110,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
             Text(
               "Inscription",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().titre(),
                 fontWeight: FontWeight.bold,
               ),
@@ -127,7 +130,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
             Text(
               "Pseudo",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
               ),
             ),
@@ -159,7 +162,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
             Text(
               "Mail",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
               ),
             ),
@@ -191,7 +194,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
             Text(
               "Mot de passe",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
               ),
             ),
@@ -224,7 +227,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
         Bouton(
           onTap: inscription,
           borderRadius: BorderRadius.circular(50),
-          couleurHover: Colors.white.withOpacity(0.2),
+          couleurHover: App.couleurs().important().withOpacity(0.2),
           child: Ink(
             height: 50,
             width: 150,
@@ -251,7 +254,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
           child: Text(
             "< Se connecter",
             style: TextStyle(
-              color: Colors.white,
+              color: App.couleurs().important(),
               fontSize: App.fontSize().chargement(),
             ),
           ),

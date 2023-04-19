@@ -83,7 +83,7 @@ class _MenuBoutonState extends State<MenuBouton> {
 
   Color getCouleur() {
     if (widget.routes.contains(NavigationController.getRoute(context))) {
-      return Colors.white;
+      return App.couleurs().important();
     }
 
     return App.couleurs().texte();

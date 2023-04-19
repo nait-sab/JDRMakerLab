@@ -42,7 +42,7 @@ class TitreInterface extends StatelessWidget {
                 child: Text(
                   _getTitre(),
                   style: TextStyle(
-                    color: Colors.white,
+                    color: App.couleurs().important(),
                     fontSize: App.fontSize().normal(),
                     fontWeight: FontWeight.bold,
                   ),
@@ -51,7 +51,7 @@ class TitreInterface extends StatelessWidget {
             ),
             Icon(
               Icons.expand_more_rounded,
-              color: Colors.white,
+              color: App.couleurs().important(),
               size: App.fontSize().titre(),
             ),
           ],
@@ -72,7 +72,7 @@ class TitreInterface extends StatelessWidget {
               child: Text(
                 _getTitre(),
                 style: TextStyle(
-                  color: Colors.white,
+                  color: App.couleurs().important(),
                   fontSize: App.fontSize().chargement(),
                   fontWeight: FontWeight.bold,
                 ),
@@ -107,7 +107,7 @@ class TitreInterface extends StatelessWidget {
                     child: Text(
                       _getTitre(),
                       style: TextStyle(
-                        color: Colors.white,
+                        color: App.couleurs().important(),
                         fontSize: App.fontSize().normal(),
                         fontWeight: FontWeight.bold,
                       ),
@@ -116,7 +116,7 @@ class TitreInterface extends StatelessWidget {
                 ),
                 Icon(
                   Icons.expand_more_rounded,
-                  color: Colors.white,
+                  color: App.couleurs().important(),
                   size: App.fontSize().titre(),
                 ),
               ],

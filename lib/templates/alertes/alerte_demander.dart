@@ -35,7 +35,7 @@ class AlerteDemander extends StatelessWidget {
                 style: TextStyle(
                   fontSize: App.fontSize().sousTitre(),
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: App.couleurs().important(),
                 ),
               ),
               SizedBox(height: 20),
@@ -55,7 +55,7 @@ class AlerteDemander extends StatelessWidget {
                       "Annuler",
                       style: TextStyle(
                         fontSize: App.fontSize().normal(),
-                        color: Colors.white,
+                        color: App.couleurs().important(),
                       ),
                     ),
                   ),
@@ -75,7 +75,7 @@ class AlerteDemander extends StatelessWidget {
                         "Confirmer",
                         style: TextStyle(
                           fontSize: App.fontSize().normal(),
-                          color: Colors.white,
+                          color: App.couleurs().important(),
                         ),
                       ),
                     ),

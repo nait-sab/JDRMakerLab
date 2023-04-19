@@ -18,7 +18,7 @@ class _ExplorerViewState extends State<ExplorerView> {
           child: Text(
             "Explorer",
             style: TextStyle(
-              color: Colors.white,
+              color: App.couleurs().important(),
               fontSize: App.fontSize().titre(),
             ),
           ),

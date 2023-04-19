@@ -31,7 +31,7 @@ class _EditeurApplicationState extends State<EditeurApplication> {
         color: Colors.transparent,
         child: Bouton(
           onTap: () {},
-          couleurHover: Colors.white.withOpacity(0.2),
+          couleurHover: App.couleurs().important().withOpacity(0.2),
           borderRadius: BorderRadius.circular(10),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -53,7 +53,7 @@ class _EditeurApplicationState extends State<EditeurApplication> {
                     Text(
                       widget.total.toString(),
                       style: TextStyle(
-                        color: Colors.white,
+                        color: App.couleurs().important(),
                         fontSize: App.fontSize().titre(),
                       ),
                     ),

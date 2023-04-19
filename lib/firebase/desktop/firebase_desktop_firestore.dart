@@ -33,12 +33,12 @@ class FirebaseDesktopFirestore {
   }
 
   /// Modifier un document par un [id] à la [collection] avec les données [json]
-  static Future modifierDocumentID(
+  static Future modifierDocument(
     String collection,
     String id,
     Map<String, dynamic> json,
   ) async {
-    return await _instance().document(id).update(json);
+    return await _instance().collection(collection).document(id).update(json);
   }
 
   /// Supprimer un document par un [id] à la [collection]

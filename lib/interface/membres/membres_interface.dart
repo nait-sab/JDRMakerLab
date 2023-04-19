@@ -25,10 +25,6 @@ class MembresInterface extends StatelessWidget {
       icone: Icons.add_rounded,
       action: () {},
     ));
-    liste.add(SizedBox(height: 5));
-    liste.add(MembreBouton());
-    liste.add(MembreBouton());
-    liste.add(SizedBox(height: 5));
     return liste;
   }
 }

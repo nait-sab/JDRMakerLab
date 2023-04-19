@@ -25,7 +25,11 @@ class ProfilInterface extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.white,
+              ),
+              child: Image.network(
+                utilisateur.imageUrl,
+                width: double.infinity,
+                height: double.infinity,
               ),
             ),
             SizedBox(width: 10),
@@ -34,7 +38,7 @@ class ProfilInterface extends StatelessWidget {
                 utilisateur.username,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: App.couleurs().important(),
                   fontSize: App.fontSize().normal(),
                 ),
               ),

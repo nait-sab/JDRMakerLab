@@ -18,7 +18,7 @@ class _JouerViewState extends State<JouerView> {
           child: Text(
             "Jouer",
             style: TextStyle(
-              color: Colors.white,
+              color: App.couleurs().important(),
               fontSize: App.fontSize().titre(),
             ),
           ),

@@ -46,7 +46,7 @@ class _ProfilScoreState extends State<ProfilScore> {
                 Text(
                   widget.total.toString(),
                   style: TextStyle(
-                    color: Colors.white,
+                    color: App.couleurs().important(),
                     fontSize: App.fontSize().titre(),
                   ),
                 ),

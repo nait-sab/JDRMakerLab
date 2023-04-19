@@ -65,8 +65,9 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
             child: Text(
               "Créer un projet",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().normal(),
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

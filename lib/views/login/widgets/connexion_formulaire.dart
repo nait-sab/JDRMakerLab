@@ -73,10 +73,12 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
       FirebaseServiceAuth.getUtilisateurID(),
     );
 
-    _chargerUtilisateur(UtilisateurModel.fromMap(utilisateurData));
+    UtilisateurModel utilisateur = UtilisateurModel.fromMap(utilisateurData);
+    _chargerUtilisateur(utilisateur);
 
     // Chargement de l'application
     await chargerProjets();
+    UtilisateurController.themeSombre = utilisateur.themeSombre;
     _changerRoute("/explorer");
   }
 
@@ -104,7 +106,7 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
             Text(
               "Connexion",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().titre(),
                 fontWeight: FontWeight.bold,
               ),
@@ -124,7 +126,7 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
             Text(
               "Pseudo",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
               ),
             ),
@@ -156,7 +158,7 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
             Text(
               "Mot de passe",
               style: TextStyle(
-                color: Colors.white,
+                color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
               ),
             ),
@@ -189,7 +191,7 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
         Bouton(
           onTap: connexion,
           borderRadius: BorderRadius.circular(50),
-          couleurHover: Colors.white.withOpacity(0.2),
+          couleurHover: App.couleurs().important().withOpacity(0.2),
           child: Ink(
             height: 50,
             width: 150,
@@ -216,7 +218,7 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
           child: Text(
             "Créer un compte >",
             style: TextStyle(
-              color: Colors.white,
+              color: App.couleurs().important(),
               fontSize: App.fontSize().chargement(),
             ),
           ),

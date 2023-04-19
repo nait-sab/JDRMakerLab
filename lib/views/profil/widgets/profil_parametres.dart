@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
+import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_parametre_bouton.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_parametre_categorie.dart';
 
@@ -15,6 +19,8 @@ class ProfilParametres extends StatefulWidget {
 }
 
 class _ProfilParametresState extends State<ProfilParametres> {
+  void changerRoute(String route) => NavigationController.changerView(context, route);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +40,6 @@ class _ProfilParametresState extends State<ProfilParametres> {
                 ProfilParametreCategorie(
                   nom: "Feuilles Personnage",
                   actif: widget.onglet == "feuilles",
-                  total: 2,
                   route: "/profil/feuilles",
                 ),
                 ProfilParametreCategorie(
@@ -86,7 +91,7 @@ class _ProfilParametresState extends State<ProfilParametres> {
     List<Widget> liste = [
       ProfilParametreBouton(
         nom: "Modifier mon profil",
-        route: "",
+        action: () {},
       ),
     ];
 
@@ -97,7 +102,7 @@ class _ProfilParametresState extends State<ProfilParametres> {
     List<Widget> liste = [
       ProfilParametreBouton(
         nom: "Créer une nouvelle feuille",
-        route: "",
+        action: () {},
       ),
     ];
     return liste;
@@ -107,9 +112,23 @@ class _ProfilParametresState extends State<ProfilParametres> {
     List<Widget> liste = [
       ProfilParametreBouton(
         nom: "Changer de thème",
-        route: "",
+        action: changerTheme,
       ),
     ];
     return liste;
+  }
+
+  Future changerTheme() async {
+    UtilisateurModel utilisateur = UtilisateurController.getUtilisateur(context)!;
+    utilisateur.themeSombre = !utilisateur.themeSombre;
+
+    await FirebaseServiceFirestore.modifierDocument(
+      UtilisateurModel.nomCollection,
+      utilisateur.id,
+      utilisateur.toMap(),
+    );
+
+    UtilisateurController.themeSombre = utilisateur.themeSombre;
+    changerRoute("/profil/parametres");
   }
 }

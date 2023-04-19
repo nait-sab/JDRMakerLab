@@ -21,7 +21,7 @@ class MenuTitre extends StatelessWidget {
           child: Text(
             texte,
             style: TextStyle(
-              color: Colors.white,
+              color: App.couleurs().important(),
               fontSize: App.fontSize().normal(),
               fontWeight: FontWeight.bold,
             ),

@@ -21,7 +21,7 @@ class MenuIcone extends StatelessWidget {
             child: Center(
               child: Icon(
                 icone,
-                color: Colors.white,
+                color: App.couleurs().important(),
                 size: App.fontSize().titre(),
               ),
             ),

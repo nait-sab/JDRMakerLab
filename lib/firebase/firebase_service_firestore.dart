@@ -44,7 +44,7 @@ class FirebaseServiceFirestore {
   ) async {
     return Platform.isAndroid
         ? await FirebaseAndroidFirestore.modifierDocument(collection, id, json)
-        : await FirebaseDesktopFirestore.modifierDocumentID(collection, id, json);
+        : await FirebaseDesktopFirestore.modifierDocument(collection, id, json);
   }
 
   /// Supprimer un document par un [id] à la [collection]

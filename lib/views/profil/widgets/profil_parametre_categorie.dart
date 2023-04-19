@@ -48,7 +48,7 @@ class _ProfilParametreCategorieState extends State<ProfilParametreCategorie> {
         child: Text(
           nom,
           style: TextStyle(
-            color: widget.actif ? Colors.white : App.couleurs().texte(),
+            color: widget.actif ? App.couleurs().important() : App.couleurs().texte(),
             fontSize: App.fontSize().normal(),
             fontWeight: widget.actif ? FontWeight.bold : FontWeight.normal,
           ),

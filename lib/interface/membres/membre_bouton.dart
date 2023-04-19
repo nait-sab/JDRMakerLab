@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/config/app.dart';
 
 class MembreBouton extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class MembreBouton extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
-        color: Colors.white,
+        color: App.couleurs().important(),
       ),
     );
   }

@@ -29,7 +29,7 @@ class Bouton extends StatelessWidget {
     Color? couleurTap,
     Color? couleurHover,
   })  : onHover = onHover ?? ((survol) {}),
-        couleurTap = couleurTap ?? Colors.white.withOpacity(0.3),
+        couleurTap = couleurTap ?? App.couleurs().important().withOpacity(0.3),
         couleurHover = couleurHover ?? App.couleurs().fondSecondaire(),
         borderRadius = borderRadius ?? BorderRadius.circular(0);
 

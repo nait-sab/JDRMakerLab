@@ -45,7 +45,7 @@ class _ProfilInfoState extends State<ProfilInfo> {
                 Text(
                   widget.utilisateur.username,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: App.couleurs().important(),
                     fontSize: App.fontSize().normal(),
                     fontWeight: FontWeight.bold,
                   ),

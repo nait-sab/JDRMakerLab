@@ -36,7 +36,7 @@ class AlerteCopiable extends StatelessWidget {
                 style: TextStyle(
                   fontSize: App.fontSize().normal() + 2,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: App.couleurs().important(),
                 ),
               ),
               SizedBox(height: 10),

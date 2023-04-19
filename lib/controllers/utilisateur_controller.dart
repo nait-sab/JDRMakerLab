@@ -11,6 +11,8 @@ class UtilisateurController extends ChangeNotifier {
   /// Projet sélectionné
   UtilisateurModel? _utilisateur;
 
+  static bool themeSombre = true;
+
   void actualiser(UtilisateurModel utilisateur) {
     _utilisateur = utilisateur;
     notifyListeners();
@@ -18,6 +20,7 @@ class UtilisateurController extends ChangeNotifier {
 
   static void changerUtilisateur(BuildContext context, UtilisateurModel utilisateur) {
     Provider.of<UtilisateurController>(context, listen: false).actualiser(utilisateur);
+    UtilisateurController.themeSombre = utilisateur.themeSombre;
   }
 
   static void retirerUtilisateur(BuildContext context) {
