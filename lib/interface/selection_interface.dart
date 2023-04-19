@@ -3,15 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
 class SelectionInterface extends StatefulWidget {
-  final List<ProjetModel> projets;
+  final ProjetController projetController;
   final Function action;
 
   SelectionInterface({
-    required this.projets,
+    required this.projetController,
     required this.action,
   });
 
@@ -38,7 +39,7 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
   }
 
   Widget renduListe() {
-    if (widget.projets.length < 5) {
+    if (widget.projetController.projets.length < 5) {
       return Wrap(
         children: liste(),
       );
@@ -73,7 +74,7 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
       ),
     ));
 
-    if (widget.projets.isEmpty) {
+    if (widget.projetController.projets.isEmpty) {
       liste.add(Container(
         padding: EdgeInsets.all(10),
         child: Center(
@@ -87,7 +88,7 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
         ),
       ));
     } else {
-      for (ProjetModel projet in widget.projets) {
+      for (ProjetModel projet in widget.projetController.projets) {
         liste.add(boutonProjet(projet));
       }
     }

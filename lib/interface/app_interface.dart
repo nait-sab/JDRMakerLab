@@ -74,7 +74,10 @@ class _AppInterfaceState extends State<AppInterface> {
   Widget renduDesktop() {
     return Column(
       children: [
-        EnteteInterface(projetController: projetController, actionTitre: changerSelection),
+        EnteteInterface(
+          projetController: projetController,
+          actionTitre: changerSelection,
+        ),
         Expanded(
           child: Stack(
             children: [
@@ -115,7 +118,7 @@ class _AppInterfaceState extends State<AppInterface> {
     }
 
     return SelectionInterface(
-      projets: projetController.projets,
+      projetController: projetController,
       action: chargerProjet,
     );
   }

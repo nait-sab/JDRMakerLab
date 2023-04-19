@@ -71,7 +71,7 @@ class ProjetController extends ChangeNotifier {
 
   Future _chargerProjets(UtilisateurModel utilisateur) async {
     print("Charger projets call");
-    projets.clear();
+    projets = [];
     projet = null;
 
     await FirebaseServiceFirestore.getListe(ProjetModel.nomCollection, (data) {

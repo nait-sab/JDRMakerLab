@@ -10,4 +10,6 @@ class Couleurs {
   Color vert() => Color(0xff43D1A7);
   Color rouge() => Color(0xffCF6679);
   Color orange() => Color(0xffFF862E);
+  Color jaune() => Color(0xffC7AC60);
+  Color bleu() => Color(0xff6569C3);
 }

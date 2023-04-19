@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
 import 'package:jdr_maker/views/jouer/jouer_view.dart';
 import 'package:jdr_maker/views/login/connexion_view.dart';
@@ -44,7 +45,7 @@ class Routes {
         break;
 
       case "/editeur":
-        liste.add(MaterialPage(child: ExplorerView()));
+        liste.add(MaterialPage(child: EditeurView()));
         break;
 
       case "/amis":
@@ -55,8 +56,16 @@ class Routes {
         liste.add(MaterialPage(child: JouerView()));
         break;
 
-      case "/profil":
-        liste.add(MaterialPage(child: ProfilView()));
+      case "/profil/compte":
+        liste.add(MaterialPage(child: ProfilView(onglet: "compte")));
+        break;
+
+      case "/profil/feuilles":
+        liste.add(MaterialPage(child: ProfilView(onglet: "feuilles")));
+        break;
+
+      case "/profil/parametres":
+        liste.add(MaterialPage(child: ProfilView(onglet: "parametres")));
         break;
     }
 

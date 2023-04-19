@@ -59,28 +59,25 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
 
     // Tentative de connexion
     setState(() => chargement = !chargement);
+
     bool connexionReussi = await FirebaseServiceAuth.connexion(mail, passe);
+
     if (!connexionReussi) {
       setState(() => chargement = !chargement);
       return _afficherErreur("Compte invalide ou introuvable");
     }
 
     // Chargement de l'utilisateur
-    _chargerUtilisateur(
-      UtilisateurModel.fromMap(
-        await FirebaseServiceFirestore.getDocumentID(
-          UtilisateurModel.nomCollection,
-          FirebaseServiceAuth.getUtilisateurID(),
-        ),
-      ),
+    var utilisateurData = await FirebaseServiceFirestore.getDocumentID(
+      UtilisateurModel.nomCollection,
+      FirebaseServiceAuth.getUtilisateurID(),
     );
+
+    _chargerUtilisateur(UtilisateurModel.fromMap(utilisateurData));
 
     // Chargement de l'application
     await chargerProjets();
-    if (mounted) {
-      setState(() => chargement = !chargement);
-      _changerRoute("/explorer");
-    }
+    _changerRoute("/explorer");
   }
 
   Future chargerProjets() async {
@@ -93,7 +90,6 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
   void autoLog() {
     mailController.text = "test@gmail.com";
     passeController.text = "000000";
-    connexion();
   }
 
   /// Widget contenant l'ensemble du formulaire

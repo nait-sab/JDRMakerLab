@@ -28,16 +28,16 @@ class ProjetModel {
 
   String dateCreation;
 
-  ProjetModel(
-      {required this.id,
-      required this.idCreateur,
-      required this.nom,
-      required this.isPublic,
-      required this.codeMembre,
-      required this.codeUtilisable,
-      required this.derniereModification,
-      required this.dateCreation
-      });
+  ProjetModel({
+    required this.id,
+    required this.idCreateur,
+    required this.nom,
+    required this.isPublic,
+    required this.codeMembre,
+    required this.codeUtilisable,
+    required this.derniereModification,
+    required this.dateCreation,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -54,14 +54,14 @@ class ProjetModel {
 
   static ProjetModel fromMap(data) {
     return ProjetModel(
-        id: data["id"],
-        idCreateur: data["idCreateur"],
-        nom: data["nom"],
-        isPublic: data["isPublic"],
-        codeMembre: data["codeMembre"],
-        codeUtilisable: data["codeUtilisable"],
-        derniereModification: data["derniereModification"],
-        dateCreation: data["dateCreation"]
-        );
+      id: data["id"],
+      idCreateur: data["idCreateur"],
+      nom: data["nom"],
+      isPublic: data["isPublic"],
+      codeMembre: data["codeMembre"],
+      codeUtilisable: data["codeUtilisable"],
+      derniereModification: data["derniereModification"],
+      dateCreation: data["dateCreation"],
+    );
   }
 }

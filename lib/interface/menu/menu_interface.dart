@@ -66,7 +66,7 @@ class _MenuInterfaceState extends State<MenuInterface> {
         liste.add(MenuBouton(
           texte: "Éditeur",
           icone: Icons.home_rounded,
-          routes: [],
+          routes: ["/editeur"],
           action: () => _changerRoute("/editeur"),
         ));
       }
@@ -90,7 +90,7 @@ class _MenuInterfaceState extends State<MenuInterface> {
         texte: "Paramètres",
         icone: Icons.settings_rounded,
         routes: [],
-        action: () => _changerRoute("/profil"),
+        action: () => _changerRoute("/profil/parametres"),
       ));
       liste.add(MenuBouton(
         texte: "Déconnexion",

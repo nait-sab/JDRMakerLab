@@ -8,6 +8,7 @@ import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/interface/entete/profil_interface.dart';
 import 'package:jdr_maker/interface/entete/recherche_interface.dart';
 import 'package:jdr_maker/interface/entete/titre_interface.dart';
+import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/boutons/boutons_desktop.dart';
 
@@ -60,10 +61,12 @@ class _EnteteInterfaceState extends State<EnteteInterface> {
   List<Widget> _getEntete() {
     List<Widget> liste = [];
 
-    if (UtilisateurController.getUtilisateur(context) != null) {
+    UtilisateurModel? utilisateur = UtilisateurController.getUtilisateur(context);
+
+    if (utilisateur != null) {
       liste.add(RechercheInterface());
       liste.add(Spacer());
-      liste.add(ProfilInterface());
+      liste.add(ProfilInterface(utilisateur: utilisateur));
     }
 
     if (liste.isEmpty) {
