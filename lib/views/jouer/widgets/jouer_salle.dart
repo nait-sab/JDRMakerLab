@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
-class EditeurApplication extends StatefulWidget {
+class JouerSalle extends StatefulWidget {
   final String nom;
-  final String route;
-  final IconData icone;
-  final Color iconeCouleur;
+  final String createur;
   final int total;
 
-  EditeurApplication({
+  JouerSalle({
     required this.nom,
-    required this.route,
-    required this.icone,
-    required this.iconeCouleur,
+    required this.createur,
     required this.total,
   });
 
   @override
-  State<EditeurApplication> createState() => _EditeurApplicationState();
+  State<JouerSalle> createState() => _JouerSalleState();
 }
 
-class _EditeurApplicationState extends State<EditeurApplication> {
-  void changerRoute(String route) => NavigationController.changerView(context, route);
-
+class _JouerSalleState extends State<JouerSalle> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +28,7 @@ class _EditeurApplicationState extends State<EditeurApplication> {
       child: Material(
         color: Colors.transparent,
         child: Bouton(
-          onTap: () => changerRoute(widget.route),
+          onTap: () {},
           couleurHover: App.couleurs().important().withOpacity(0.2),
           borderRadius: BorderRadius.circular(10),
           child: Padding(
@@ -44,6 +37,13 @@ class _EditeurApplicationState extends State<EditeurApplication> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  widget.nom,
+                  style: TextStyle(
+                    color: App.couleurs().important(),
+                    fontSize: App.fontSize().sousTitre(),
+                  ),
+                ),
                 Text(
                   widget.nom,
                   style: TextStyle(
@@ -63,9 +63,9 @@ class _EditeurApplicationState extends State<EditeurApplication> {
                       ),
                     ),
                     Icon(
-                      widget.icone,
+                      Icons.group_rounded,
                       size: App.fontSize().titre(),
-                      color: widget.iconeCouleur,
+                      color: App.couleurs().important(),
                     ),
                   ],
                 )

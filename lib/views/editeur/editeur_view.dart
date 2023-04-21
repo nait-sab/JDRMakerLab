@@ -36,31 +36,36 @@ class _EditeurViewState extends State<EditeurView> {
                 mainAxisSpacing: 20,
                 children: [
                   EditeurApplication(
-                    nom: "Système de jeu",
+                    nom: "Systèmes de jeu",
+                    route: "",
                     icone: Icons.warning_rounded,
                     iconeCouleur: App.couleurs().jaune(),
                     total: 0,
                   ),
                   EditeurApplication(
                     nom: "Événements",
+                    route: "",
                     icone: Icons.menu_book_rounded,
                     iconeCouleur: App.couleurs().rouge(),
-                    total: 0,
+                    total: projetController.personnages.length,
                   ),
                   EditeurApplication(
                     nom: "Personnages",
+                    route: "/editeur/personnage/liste",
                     icone: Icons.group_rounded,
                     iconeCouleur: App.couleurs().vert(),
                     total: 0,
                   ),
                   EditeurApplication(
                     nom: "Lieux",
+                    route: "",
                     icone: Icons.location_on_rounded,
                     iconeCouleur: App.couleurs().violet(),
                     total: 0,
                   ),
                   EditeurApplication(
                     nom: "Objets",
+                    route: "",
                     icone: Icons.diamond_rounded,
                     iconeCouleur: App.couleurs().bleu(),
                     total: 0,

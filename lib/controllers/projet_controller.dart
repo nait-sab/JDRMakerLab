@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/controllers/personnage_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/personnage_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +14,7 @@ import 'package:provider/provider.dart';
 class ProjetController extends ChangeNotifier {
   /// Liste des projets
   List<ProjetModel> projets = [];
+  List<PersonnageModel> personnages = [];
 
   /// Données du projet actuel
   ProjetModel? projet;
@@ -30,6 +33,11 @@ class ProjetController extends ChangeNotifier {
     return Provider.of<ProjetController>(context, listen: false).projet;
   }
 
+  /// Récupérer les personnages du projet actuel
+  static List<PersonnageModel> getPersonnages(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).personnages;
+  }
+
   // =========================================================
   // Actualiser le projet
   // =========================================================
@@ -41,6 +49,8 @@ class ProjetController extends ChangeNotifier {
     if (projet == null) {
       return;
     }
+
+    personnages = await PersonnageController.chargerPersonnages(projet!);
 
     notifyListeners();
   }
@@ -56,7 +66,10 @@ class ProjetController extends ChangeNotifier {
 
   Future _chargerProjet(ProjetModel projet) async {
     print("Charger projet call");
+
     this.projet = projet;
+    personnages = await PersonnageController.chargerPersonnages(projet);
+
     notifyListeners();
   }
 
@@ -71,8 +84,10 @@ class ProjetController extends ChangeNotifier {
 
   Future _chargerProjets(UtilisateurModel utilisateur) async {
     print("Charger projets call");
-    projets = [];
+
     projet = null;
+    projets = [];
+    personnages = [];
 
     await FirebaseServiceFirestore.getListe(ProjetModel.nomCollection, (data) {
       ProjetModel projetModel = ProjetModel.fromMap(data);

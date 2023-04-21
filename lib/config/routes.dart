@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/views/amis/amis_view.dart';
+import 'package:jdr_maker/views/editeur/apps/personnage/personnage_liste_view.dart';
 import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
 import 'package:jdr_maker/views/jouer/jouer_view.dart';
@@ -67,6 +68,25 @@ class Routes {
 
       case "/profil/parametres":
         liste.add(MaterialPage(child: ProfilView(onglet: "parametres")));
+        break;
+
+      // =======================================================
+      // Application - Personnage
+      // =======================================================
+      case "/editeur/personnage/liste":
+        liste.add(MaterialPage(child: PersonnageListeView()));
+        break;
+
+      case "/editeur/personnage/vue":
+        liste.add(MaterialPage(child: JouerView()));
+        break;
+
+      case "/editeur/personnage/ajouter":
+        liste.add(MaterialPage(child: JouerView()));
+        break;
+
+      case "/editeur/personnage/modifier":
+        liste.add(MaterialPage(child: JouerView()));
         break;
     }
 
