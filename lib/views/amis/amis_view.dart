@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
-import 'package:jdr_maker/views/explorer/widgets/explorer_info.dart';
-import 'package:provider/provider.dart';
 
 class AmisView extends StatefulWidget {
   @override

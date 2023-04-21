@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
+import 'package:jdr_maker/firebase/android/firebase_android_firestore.dart';
+import 'package:jdr_maker/firebase/firebase_service_storage.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
+import 'package:jdr_maker/tools/image_tool.dart';
 
 class ProfilPhoto extends StatefulWidget {
   final UtilisateurModel utilisateur;
@@ -33,11 +39,11 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
         ),
         Align(
           alignment: Alignment.topRight,
-          child: _boutonProfil(() {}, App.couleurs().violet(), Icons.edit_rounded),
+          child: _boutonProfil(modifier, App.couleurs().violet(), Icons.edit_rounded),
         ),
         Align(
           alignment: Alignment.bottomRight,
-          child: _boutonProfil(() {}, App.couleurs().rouge(), Icons.delete_rounded),
+          child: _boutonProfil(supprimer, App.couleurs().rouge(), Icons.delete_rounded),
         ),
       ],
     );
@@ -65,5 +71,39 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
         ),
       ),
     );
+  }
+
+  // TODO - Tester avec la config du gcloud + Ajouter le refresh
+
+  Future modifier() async {
+    File? image = await ImageTool.choisirImage();
+
+    if (image != null) {
+      String url = await FirebaseServiceStorage.importer(image);
+      UtilisateurModel utilisateur = await getUtilisateur();
+      utilisateur.imageUrl = url;
+
+      await FirebaseAndroidFirestore.modifierDocument(
+        UtilisateurModel.nomCollection,
+        utilisateur.id,
+        utilisateur.toMap(),
+      );
+    }
+  }
+
+  Future supprimer() async {
+    UtilisateurModel utilisateur = await getUtilisateur();
+    utilisateur.imageUrl =
+        "https://firebasestorage.googleapis.com/v0/b/jdrmakerlab.appspot.com/o/defaut.png?alt=media&token=44435f0a-3992-4d9f-b16f-21c50ce1b266";
+
+    await FirebaseAndroidFirestore.modifierDocument(
+      UtilisateurModel.nomCollection,
+      utilisateur.id,
+      utilisateur.toMap(),
+    );
+  }
+
+  Future<UtilisateurModel> getUtilisateur() async {
+    return UtilisateurController.getUtilisateur(context)!;
   }
 }
