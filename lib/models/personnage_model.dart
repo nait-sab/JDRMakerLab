@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 ///
 /// Type : Model
 ///
-/// Contient les variables d'un personnage de jdr
+/// Modèle des personnages
 class PersonnageModel extends ChangeNotifier {
   static String nomCollection = "Personnages";
 
   String id;
+  String idCreateur;
   String idProjet;
   String dateModification;
   String nom;
@@ -31,6 +32,7 @@ class PersonnageModel extends ChangeNotifier {
 
   PersonnageModel({
     required this.id,
+    required this.idCreateur,
     required this.idProjet,
     required this.dateModification,
     required this.nom,
@@ -48,6 +50,7 @@ class PersonnageModel extends ChangeNotifier {
     return {
       "id": id,
       "idProjet": idProjet,
+      "idCreateur": idCreateur,
       "dateModification": dateModification,
       "nom": nom,
       "age": age,
@@ -65,6 +68,7 @@ class PersonnageModel extends ChangeNotifier {
     return PersonnageModel(
       id: data["id"],
       idProjet: data["idProjet"],
+      idCreateur: data["idCreateur"],
       dateModification: data["dateModification"],
       nom: data["nom"],
       age: data["age"],

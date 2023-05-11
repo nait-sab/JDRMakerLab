@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
-import 'package:jdr_maker/firebase/android/firebase_android_firestore.dart';
+import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/firebase/firebase_service_storage.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
@@ -73,8 +73,6 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
     );
   }
 
-  // TODO - Tester avec la config du gcloud + Ajouter le refresh
-
   Future modifier() async {
     File? image = await ImageTool.choisirImage();
 
@@ -83,12 +81,14 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
       UtilisateurModel utilisateur = await getUtilisateur();
       utilisateur.imageUrl = url;
 
-      await FirebaseAndroidFirestore.modifierDocument(
+      await FirebaseServiceFirestore.modifierDocument(
         UtilisateurModel.nomCollection,
         utilisateur.id,
         utilisateur.toMap(),
       );
     }
+
+    setState(() {});
   }
 
   Future supprimer() async {
@@ -96,11 +96,13 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
     utilisateur.imageUrl =
         "https://firebasestorage.googleapis.com/v0/b/jdrmakerlab.appspot.com/o/defaut.png?alt=media&token=44435f0a-3992-4d9f-b16f-21c50ce1b266";
 
-    await FirebaseAndroidFirestore.modifierDocument(
+    await FirebaseServiceFirestore.modifierDocument(
       UtilisateurModel.nomCollection,
       utilisateur.id,
       utilisateur.toMap(),
     );
+
+    setState(() {});
   }
 
   Future<UtilisateurModel> getUtilisateur() async {

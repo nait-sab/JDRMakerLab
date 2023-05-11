@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 /// Classe : Générateur
@@ -16,5 +17,10 @@ class GenerateurTool {
   /// Générer un ID aléatoire
   static String genererID() {
     return Uuid().v4();
+  }
+
+  /// Générer la date actuelle
+  static String genererDateActuelle() {
+    return DateFormat('dd-MM-yyyy kk:mm').format(DateTime.now());
   }
 }

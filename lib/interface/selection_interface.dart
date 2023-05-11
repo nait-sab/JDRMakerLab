@@ -57,7 +57,7 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
     liste.add(Material(
       color: Colors.transparent,
       child: Bouton(
-        onTap: () {},
+        onTap: () => changerRoute("/nouveau_projet"),
         child: Container(
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(border: Border.all(color: App.couleurs().texte())),

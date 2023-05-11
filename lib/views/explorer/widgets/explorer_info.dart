@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/banniere_info.dart';
@@ -27,7 +28,11 @@ class _ExplorerInfoState extends State<ExplorerInfo> {
   @override
   Widget build(BuildContext context) {
     if (widget.projets.isEmpty) {
-      return _afficherInfo("Vous n'avez aucun projet pour le moment", "Nouveau", () {});
+      return _afficherInfo(
+        "Vous n'avez aucun projet pour le moment",
+        "Nouveau",
+        () => changerRoute("/nouveau_projet"),
+      );
     } else if (widget.projetActuel == null) {
       ProjetModel dernierProjet = widget.projets.first;
       return _afficherInfo(
@@ -39,6 +44,8 @@ class _ExplorerInfoState extends State<ExplorerInfo> {
 
     return Container();
   }
+
+  void changerRoute(String route) => NavigationController.changerView(context, route);
 
   Future _chargerProjet(ProjetModel projet) async {
     await ProjetController.charger(context, projet);

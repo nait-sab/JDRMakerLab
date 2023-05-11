@@ -4,6 +4,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
@@ -15,6 +16,7 @@ import 'package:provider/provider.dart';
 Future main() async {
   // Initialisation des modules
   await dotenv.load();
+  await initializeDateFormatting();
   Intl.defaultLocale = "fr_FR";
   WidgetsFlutterBinding.ensureInitialized();
   await FirebaseInit.initialiserFirebase();

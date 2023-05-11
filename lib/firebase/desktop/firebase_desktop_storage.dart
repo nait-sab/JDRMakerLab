@@ -10,7 +10,7 @@ class FirebaseDesktopStorage {
   static Future<String> importer(File image) async {
     late Bucket bucket;
 
-    await rootBundle.loadString("assets/gcloud.json").then((json) async {
+    await rootBundle.loadString("assets/json/gcloud.json").then((json) async {
       bucket = Storage(
         await clientViaServiceAccount(
           ServiceAccountCredentials.fromJson(json),
