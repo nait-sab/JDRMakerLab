@@ -9,6 +9,7 @@ import 'package:jdr_maker/views/login/connexion_view.dart';
 import 'package:jdr_maker/views/login/inscription_view.dart';
 import 'package:jdr_maker/views/profil/profil_view.dart';
 import 'package:jdr_maker/views/projet/projet_create_view.dart';
+import 'package:jdr_maker/views/projet/projet_modifier_view.dart';
 import 'package:provider/provider.dart';
 
 /// Classe : Routes
@@ -73,6 +74,10 @@ class Routes {
 
       case "/nouveau_projet":
         liste.add(MaterialPage(child: ProjetCreateView()));
+        break;
+
+      case "/modifier_projet":
+        liste.add(MaterialPage(child: ProjetModifierView()));
         break;
 
       // =======================================================

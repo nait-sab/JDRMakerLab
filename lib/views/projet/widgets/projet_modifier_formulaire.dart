@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/boutons/bouton_switch.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 
-class ProjetCreateFormulaire extends StatefulWidget {
-  final Function creer;
+class ProjetModifierFormulaire extends StatefulWidget {
+  final Function modifier;
+  final ProjetModel projet;
 
-  ProjetCreateFormulaire({
-    required this.creer,
+  ProjetModifierFormulaire({
+    required this.modifier,
+    required this.projet,
   });
 
   @override
-  State<ProjetCreateFormulaire> createState() => _ProjetCreateFormulaireState();
+  State<ProjetModifierFormulaire> createState() => _ProjetModifierFormulaireState();
 }
 
-class _ProjetCreateFormulaireState extends State<ProjetCreateFormulaire> {
+class _ProjetModifierFormulaireState extends State<ProjetModifierFormulaire> {
   late TextEditingController nom;
   late bool projetPublic;
 
   @override
   void initState() {
     super.initState();
-    nom = TextEditingController();
-    projetPublic = false;
+    nom = TextEditingController(text: widget.projet.nom);
+    projetPublic = widget.projet.isPublic;
   }
 
   void changerPublic() => projetPublic = !projetPublic;
@@ -35,7 +38,7 @@ class _ProjetCreateFormulaireState extends State<ProjetCreateFormulaire> {
         Column(
           children: [
             Text(
-              "Créer un nouveau projet",
+              "Modifier le projet",
               style: TextStyle(
                 color: App.couleurs().important(),
                 fontSize: App.fontSize().sousTitre(),
@@ -95,7 +98,7 @@ class _ProjetCreateFormulaireState extends State<ProjetCreateFormulaire> {
         Align(
           alignment: Alignment.bottomRight,
           child: BoutonIcone(
-            action: () => widget.creer(nom.text, projetPublic),
+            action: () => widget.modifier(nom.text, projetPublic),
             icone: Icons.done_rounded,
           ),
         )
