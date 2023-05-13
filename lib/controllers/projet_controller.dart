@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/personnage_controller.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/personnage_model.dart';
@@ -16,6 +18,10 @@ class ProjetController extends ChangeNotifier {
   /// Liste des projets
   List<ProjetModel> projets = [];
   List<PersonnageModel> personnages = [];
+
+  // Membres
+  List<MembreModel> membresModeles = [];
+  List<UtilisateurModel> membres = [];
 
   /// Données du projet actuel
   ProjetModel? projet;
@@ -37,6 +43,16 @@ class ProjetController extends ChangeNotifier {
   /// Récupérer les personnages du projet actuel
   static List<PersonnageModel> getPersonnages(BuildContext context) {
     return Provider.of<ProjetController>(context, listen: false).personnages;
+  }
+
+  /// Récupérer les modèles des membres du projet actuel
+  static List<MembreModel> getMembreModeles(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).membresModeles;
+  }
+
+  /// Récupérer les membres du projet actuel
+  static List<UtilisateurModel> getMembres(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).membres;
   }
 
   // =========================================================
@@ -70,6 +86,8 @@ class ProjetController extends ChangeNotifier {
 
     this.projet = projet;
     personnages = await PersonnageController.chargerPersonnages(projet);
+    membresModeles = await MembreController.chargerMembresModeles(projet);
+    membres = await UtilisateurController.chargerMembres(membresModeles);
 
     notifyListeners();
   }
@@ -89,6 +107,8 @@ class ProjetController extends ChangeNotifier {
     projet = null;
     projets = [];
     personnages = [];
+    membresModeles = [];
+    membres = [];
 
     // Récupérer les id des projets partagés
     List<String> projetsPartagerID = [];

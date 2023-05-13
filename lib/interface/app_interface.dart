@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
+import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/entete/entete_interface.dart';
 import 'package:jdr_maker/interface/entete/titre_interface.dart';
 import 'package:jdr_maker/interface/membres/membres_interface.dart';
 import 'package:jdr_maker/interface/menu/menu_interface.dart';
 import 'package:jdr_maker/interface/selection_interface.dart';
+import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
+import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:provider/provider.dart';
 
 /// Classe : Interface
@@ -37,11 +40,17 @@ class _AppInterfaceState extends State<AppInterface> {
   // Chargement de l'interface
   late bool chargement;
 
+  // Membre du projet
+  late List<MembreModel> membresModeles;
+  late List<UtilisateurModel> membres;
+
   @override
   void initState() {
     super.initState();
     chargement = false;
     selectionVisible = false;
+    membresModeles = [];
+    membres = [];
   }
 
   Future chargerProjet(ProjetModel projet) async {
@@ -49,16 +58,17 @@ class _AppInterfaceState extends State<AppInterface> {
     if (projetController.projet != projet) {
       switchChargement();
       changerSelection();
-      await ProjetController.charger(context, projet);
+      await _chargerProjet(projet);
       switchChargement();
     } else {
       changerSelection();
     }
   }
 
+  Future _chargerProjet(ProjetModel projet) async => await ProjetController.charger(context, projet);
+
   void switchChargement() => setState(() => chargement = !chargement);
   void changerSelection() => setState(() => selectionVisible = !selectionVisible);
-  // void retourAccueil() => setState(() => NavigationController.changerView(context, "/accueil"));
 
   @override
   Widget build(BuildContext context) {

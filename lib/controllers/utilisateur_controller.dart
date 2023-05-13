@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:provider/provider.dart';
 
@@ -29,5 +31,20 @@ class UtilisateurController extends ChangeNotifier {
 
   static UtilisateurModel? getUtilisateur(BuildContext context) {
     return Provider.of<UtilisateurController>(context, listen: false)._utilisateur;
+  }
+
+  /// Charger les membres du [projet] demandé
+  static Future<List<UtilisateurModel>> chargerMembres(List<MembreModel> membresModeles) async {
+    List<UtilisateurModel> liste = [];
+
+    for (MembreModel cible in membresModeles) {
+      UtilisateurModel membre = UtilisateurModel.fromMap(
+        await FirebaseServiceFirestore.getDocumentID(UtilisateurModel.nomCollection, cible.idMembre),
+      );
+      liste.add(membre);
+    }
+
+    liste.sort((a, b) => a.id.compareTo(b.id));
+    return liste;
   }
 }

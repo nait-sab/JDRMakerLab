@@ -7,7 +7,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/personnage_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_init.dart';
@@ -28,6 +30,8 @@ Future main() async {
         ListenableProvider<NavigationController>(create: (_) => NavigationController()),
         ListenableProvider<ProjetController>(create: (_) => ProjetController()),
         ListenableProvider<UtilisateurController>(create: (_) => UtilisateurController()),
+        ListenableProvider<PersonnageController>(create: (_) => PersonnageController()),
+        ListenableProvider<MembreController>(create: (_) => MembreController()),
       ],
       child: App(),
     ),

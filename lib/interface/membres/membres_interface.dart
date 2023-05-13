@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
+import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/alertes/alerte.dart';
+import 'package:jdr_maker/templates/boutons/bouton.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/tools/generateur_tool.dart';
@@ -15,11 +18,15 @@ class MembresInterface extends StatefulWidget {
 
 class _MembresInterfaceState extends State<MembresInterface> {
   late bool chargement;
+  late List<MembreModel> membresModeles;
+  late List<UtilisateurModel> membres;
 
   @override
   void initState() {
     super.initState();
     chargement = false;
+    membresModeles = ProjetController.getMembreModeles(context);
+    membres = ProjetController.getMembres(context);
   }
 
   Future genererCode() async {
@@ -53,8 +60,14 @@ class _MembresInterfaceState extends State<MembresInterface> {
 
   List<Widget> _getListe() {
     List<Widget> liste = [];
-    liste.add(SizedBox(height: 5));
+    liste.add(SizedBox(height: 10));
     liste.add(boutonAjout());
+
+    for (UtilisateurModel utilisateur in membres) {
+      liste.add(SizedBox(height: 10));
+      liste.add(boutonMembre(utilisateur));
+    }
+
     return liste;
   }
 
@@ -70,6 +83,28 @@ class _MembresInterfaceState extends State<MembresInterface> {
     return BoutonIcone(
       icone: Icons.add_rounded,
       action: genererCode,
+    );
+  }
+
+  Widget boutonMembre(UtilisateurModel utilisateur) {
+    return Material(
+      color: Colors.transparent,
+      child: Bouton(
+        onTap: () {},
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.transparent,
+          ),
+          child: Image.network(
+            utilisateur.imageUrl,
+            width: 50,
+            height: 50,
+          ),
+        ),
+      ),
     );
   }
 }
