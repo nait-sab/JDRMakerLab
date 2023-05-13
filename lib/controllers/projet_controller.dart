@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/personnage_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/personnage_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
@@ -89,13 +90,24 @@ class ProjetController extends ChangeNotifier {
     projets = [];
     personnages = [];
 
+    // Récupérer les id des projets partagés
+    List<String> projetsPartagerID = [];
+    await FirebaseServiceFirestore.getListe(MembreModel.nomCollection, (data) {
+      MembreModel membre = MembreModel.fromMap(data);
+      if (membre.idMembre == utilisateur.id) {
+        projetsPartagerID.add(membre.idProjet);
+      }
+    });
+
+    // Récupérer les projets Firebase si créateur ou membre
     await FirebaseServiceFirestore.getListe(ProjetModel.nomCollection, (data) {
       ProjetModel projetModel = ProjetModel.fromMap(data);
-      if (projetModel.idCreateur == utilisateur.id) {
+      if (projetModel.idCreateur == utilisateur.id || projetsPartagerID.contains(projetModel.id)) {
         projets.add(projetModel);
       }
     });
 
+    projets.sort((a, b) => b.derniereModification.compareTo(a.derniereModification));
     notifyListeners();
   }
 

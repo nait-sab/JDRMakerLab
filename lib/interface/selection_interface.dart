@@ -5,6 +5,8 @@ import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
+import 'package:jdr_maker/interface/selection/selection_nouveau.dart';
+import 'package:jdr_maker/interface/selection/selection_rejoindre.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 import 'package:jdr_maker/tools/securite_tool.dart';
@@ -56,26 +58,8 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
   List<Widget> liste() {
     List<Widget> liste = [];
 
-    liste.add(Material(
-      color: Colors.transparent,
-      child: Bouton(
-        onTap: () => changerRoute("/nouveau_projet"),
-        child: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(border: Border.all(color: App.couleurs().texte())),
-          child: Center(
-            child: Text(
-              "Créer un projet",
-              style: TextStyle(
-                color: App.couleurs().important(),
-                fontSize: App.fontSize().normal(),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
-    ));
+    liste.add(SelectionNouveau(action: () => changerRoute("/nouveau_projet")));
+    liste.add(SelectionRejoindre(action: () => changerRoute("/rejoindre_projet")));
 
     if (widget.projetController.projets.isEmpty) {
       liste.add(Container(
@@ -100,23 +84,26 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
   }
 
   Widget boutonProjet(ProjetModel projet) {
-    return Bouton(
-      onTap: () => widget.action(projet),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(border: Border.all()),
-        child: Row(
-          children: [
-            Text(
-              projet.nom,
-              style: TextStyle(
-                color: App.couleurs().texte(),
-                fontSize: App.fontSize().normal(),
+    return Material(
+      color: Colors.transparent,
+      child: Bouton(
+        onTap: () => widget.action(projet),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(border: Border.all()),
+          child: Row(
+            children: [
+              Text(
+                projet.nom,
+                style: TextStyle(
+                  color: App.couleurs().texte(),
+                  fontSize: App.fontSize().normal(),
+                ),
               ),
-            ),
-            Spacer(),
-            iconePartage(projet),
-          ],
+              Spacer(),
+              iconePartage(projet),
+            ],
+          ),
         ),
       ),
     );

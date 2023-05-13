@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jdr_maker/templates/alertes/alerte_copiable.dart';
 import 'package:jdr_maker/templates/alertes/alerte_demander.dart';
 import 'package:jdr_maker/templates/alertes/alerte_message.dart';
+import 'package:jdr_maker/templates/alertes/alerte_message_copiable.dart';
 
 /// Classe : Alerte
 ///
@@ -18,23 +18,23 @@ class Alerte {
     );
   }
 
-  static void demander(BuildContext context, String titre, String description, VoidCallback action) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) {
-        return AlerteDemander(titre: titre, description: description, action: action);
-      },
-    );
-  }
-
   /// Afficher un message avec un [titre], un [texte] et un [code] copiable
   static void messageCopiable(BuildContext context, String titre, String texte, String code) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (_) {
-        return AlerteCopiable(titre: titre, texte: texte, code: code);
+        return AlerteMessageCopiable(titre: titre, texte: texte, code: code);
+      },
+    );
+  }
+
+  static void demander(BuildContext context, String titre, String description, VoidCallback action) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return AlerteDemander(titre: titre, description: description, action: action);
       },
     );
   }
