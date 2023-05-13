@@ -82,8 +82,13 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
         utilisateur.id,
         utilisateur.toMap(),
       );
-    }
 
+      rafraichir(utilisateur);
+    }
+  }
+
+  void rafraichir(UtilisateurModel utilisateur) {
+    UtilisateurController.changerUtilisateur(context, utilisateur);
     setState(() {});
   }
 
@@ -98,7 +103,7 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
       utilisateur.toMap(),
     );
 
-    setState(() {});
+    rafraichir(utilisateur);
   }
 
   Future<UtilisateurModel> getUtilisateur() async {
