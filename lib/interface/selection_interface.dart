@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
+import 'package:jdr_maker/tools/securite_tool.dart';
 
 class SelectionInterface extends StatefulWidget {
   final ProjetController projetController;
@@ -121,11 +123,10 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
   }
 
   Widget iconePartage(ProjetModel projet) {
-    bool isCreateur =
-        false; /*AutorisationTool.isCreateur(
+    bool isCreateur = SecuriteTool.isCreateur(
       projet,
-      UtilisateurController.getUtilisateur(context),
-    );*/
+      UtilisateurController.getUtilisateur(context)!,
+    );
 
     if (!isCreateur) {
       return Icon(
@@ -135,6 +136,6 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
       );
     }
 
-    //return Container();
+    return Container();
   }
 }
