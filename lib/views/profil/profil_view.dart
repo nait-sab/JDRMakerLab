@@ -6,6 +6,7 @@ import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
+import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_info.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_parametres.dart';
@@ -30,7 +31,15 @@ class _ProfilViewState extends State<ProfilView> {
   void initState() {
     super.initState();
     utilisateur = UtilisateurController.getUtilisateur(context)!;
-    projetsTotal = ProjetController.getProjets(context).length;
+
+    // Calculer le nombre de projets personnel
+    List<ProjetModel> projets = [];
+    for (ProjetModel projet in ProjetController.getProjets(context)) {
+      if (projet.idCreateur == utilisateur.id) {
+        projets.add(projet);
+      }
+    }
+    projetsTotal = projets.length;
   }
 
   @override
