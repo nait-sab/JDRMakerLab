@@ -25,16 +25,12 @@ class _ProfilPhotoState extends State<ProfilPhoto> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          height: 150,
-          width: 150,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-          ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
           child: Image.network(
             widget.utilisateur.imageUrl,
-            width: double.infinity,
-            height: double.infinity,
+            width: 150,
+            height: 150,
           ),
         ),
         Align(

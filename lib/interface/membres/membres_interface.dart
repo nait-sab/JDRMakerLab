@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/interface/membres/membre_ajout.dart';
+import 'package:jdr_maker/interface/membres/membre_bouton.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
@@ -17,31 +19,14 @@ class MembresInterface extends StatefulWidget {
 }
 
 class _MembresInterfaceState extends State<MembresInterface> {
-  late bool chargement;
   late List<MembreModel> membresModeles;
   late List<UtilisateurModel> membres;
 
   @override
   void initState() {
     super.initState();
-    chargement = false;
     membresModeles = ProjetController.getMembreModeles(context);
     membres = ProjetController.getMembres(context);
-  }
-
-  Future genererCode() async {
-    setState(() => chargement = true);
-    ProjetModel projet = ProjetController.getProjet(context)!;
-    String code = GenerateurTool.genererID().substring(0, 8);
-    projet.codeMembre = code;
-    projet.codeUtilisable = true;
-    await FirebaseServiceFirestore.modifierDocument(ProjetModel.nomCollection, projet.id, projet.toMap());
-    afficherAlerte(code);
-    setState(() => chargement = false);
-  }
-
-  void afficherAlerte(String code) {
-    Alerte.messageCopiable(context, "Ajouter un membre", "Nouveau code d'invitation : ", code);
   }
 
   @override
@@ -49,6 +34,7 @@ class _MembresInterfaceState extends State<MembresInterface> {
     return Container(
       width: 75,
       height: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 10),
       color: App.couleurs().fondSecondaire(),
       child: SingleChildScrollView(
         child: Column(
@@ -60,51 +46,13 @@ class _MembresInterfaceState extends State<MembresInterface> {
 
   List<Widget> _getListe() {
     List<Widget> liste = [];
-    liste.add(SizedBox(height: 10));
-    liste.add(boutonAjout());
+    liste.add(MembreAjout());
 
     for (UtilisateurModel utilisateur in membres) {
       liste.add(SizedBox(height: 10));
-      liste.add(boutonMembre(utilisateur));
+      liste.add(MembreBouton(utilisateur: utilisateur));
     }
 
     return liste;
-  }
-
-  Widget boutonAjout() {
-    if (chargement) {
-      return SizedBox(
-        height: 50,
-        width: 50,
-        child: Center(child: Chargement()),
-      );
-    }
-
-    return BoutonIcone(
-      icone: Icons.add_rounded,
-      action: genererCode,
-    );
-  }
-
-  Widget boutonMembre(UtilisateurModel utilisateur) {
-    return Material(
-      color: Colors.transparent,
-      child: Bouton(
-        onTap: () {},
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.transparent,
-          ),
-          child: Image.network(
-            utilisateur.imageUrl,
-            width: 50,
-            height: 50,
-          ),
-        ),
-      ),
-    );
   }
 }

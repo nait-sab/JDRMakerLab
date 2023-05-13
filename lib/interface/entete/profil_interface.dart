@@ -20,16 +20,12 @@ class ProfilInterface extends StatelessWidget {
         width: 200,
         child: Row(
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-              ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100),
               child: Image.network(
                 utilisateur.imageUrl,
-                width: double.infinity,
-                height: double.infinity,
+                width: 50,
+                height: 50,
               ),
             ),
             SizedBox(width: 10),
