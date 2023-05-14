@@ -68,6 +68,8 @@ class ProjetController extends ChangeNotifier {
     }
 
     personnages = await PersonnageController.chargerPersonnages(projet!);
+    membresModeles = await MembreController.chargerMembresModeles(projet!);
+    membres = await UtilisateurController.chargerMembres(membresModeles);
 
     notifyListeners();
   }
@@ -87,9 +89,7 @@ class ProjetController extends ChangeNotifier {
     this.projet = projet;
     personnages = await PersonnageController.chargerPersonnages(projet);
     membresModeles = await MembreController.chargerMembresModeles(projet);
-    print(membres.length);
     membres = await UtilisateurController.chargerMembres(membresModeles);
-    print(membres.length);
 
     notifyListeners();
   }

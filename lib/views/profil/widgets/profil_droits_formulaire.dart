@@ -9,11 +9,13 @@ class ProfilDroitsFormulaire extends StatefulWidget {
   final Function modifier;
   final MembreModel membreModel;
   final UtilisateurModel membre;
+  final VoidCallback supprimer;
 
   ProfilDroitsFormulaire({
     required this.modifier,
     required this.membreModel,
     required this.membre,
+    required this.supprimer,
   });
 
   @override
@@ -103,6 +105,14 @@ class _ProfilDroitsFormulaireState extends State<ProfilDroitsFormulaire> {
           ],
         ),
         Align(
+          alignment: Alignment.bottomLeft,
+          child: BoutonIcone(
+            action: widget.supprimer,
+            icone: Icons.delete_rounded,
+            couleur: App.couleurs().rouge(),
+          ),
+        ),
+        Align(
           alignment: Alignment.bottomRight,
           child: BoutonIcone(
             action: () => widget.modifier(
@@ -112,7 +122,7 @@ class _ProfilDroitsFormulaireState extends State<ProfilDroitsFormulaire> {
             ),
             icone: Icons.done_rounded,
           ),
-        )
+        ),
       ],
     );
   }

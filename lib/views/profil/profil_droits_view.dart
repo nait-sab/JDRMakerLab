@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
+import 'package:jdr_maker/templates/alertes/alerte.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_droits_formulaire.dart';
 
@@ -43,10 +45,27 @@ class _ProfilDroitsViewState extends State<ProfilDroitsView> {
       membreModel.toMap(),
     );
 
+    await actualiser();
     rafraichir();
     changerRoute("/explorer");
   }
 
+  Future supprimer() async {
+    Alerte.demander(
+      context,
+      "Supprimer un membre",
+      "Souhaitez-vous vraiment supprimer le membre \"${membre.pseudo}\" ?",
+      () async {
+        rafraichir();
+        await FirebaseServiceFirestore.supprimerDocument(MembreModel.nomCollection, membreModel.id);
+        await actualiser();
+        rafraichir();
+        changerRoute("/explorer");
+      },
+    );
+  }
+
+  Future actualiser() async => await ProjetController.actualiser(context);
   void rafraichir() => setState(() => chargement = !chargement);
   void changerRoute(String route) => NavigationController.changerView(context, route);
 
@@ -75,6 +94,7 @@ class _ProfilDroitsViewState extends State<ProfilDroitsView> {
       modifier: modifierDroits,
       membreModel: membreModel,
       membre: membre,
+      supprimer: supprimer,
     );
   }
 }
