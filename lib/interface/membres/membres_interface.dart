@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
-import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/membres/membre_ajout.dart';
 import 'package:jdr_maker/interface/membres/membre_bouton.dart';
 import 'package:jdr_maker/models/membre_model.dart';
-import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
-import 'package:jdr_maker/templates/alertes/alerte.dart';
-import 'package:jdr_maker/templates/boutons/bouton.dart';
-import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
-import 'package:jdr_maker/templates/chargement.dart';
-import 'package:jdr_maker/tools/generateur_tool.dart';
 
 class MembresInterface extends StatefulWidget {
   @override

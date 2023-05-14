@@ -50,7 +50,7 @@ class _ProjetCreateViewState extends State<ProjetCreateView> {
     await _chargerProjets();
     await _chargerProjet(projet);
     rafraichir();
-    changerRoute("/explorer");
+    changerRoute("/editeur");
   }
 
   Future _chargerProjets() async {

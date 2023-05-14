@@ -87,7 +87,9 @@ class ProjetController extends ChangeNotifier {
     this.projet = projet;
     personnages = await PersonnageController.chargerPersonnages(projet);
     membresModeles = await MembreController.chargerMembresModeles(projet);
+    print(membres.length);
     membres = await UtilisateurController.chargerMembres(membresModeles);
+    print(membres.length);
 
     notifyListeners();
   }
@@ -149,5 +151,38 @@ class ProjetController extends ChangeNotifier {
   /// Charger un projet
   static Future dechargerProjets(BuildContext context) async {
     await Provider.of<ProjetController>(context, listen: false)._dechargerProjet();
+  }
+
+  // =========================================================
+  // Supprimer le projet
+  // =========================================================
+
+  Future _supprimer() async {
+    print("supprimer projet call");
+
+    if (projet == null) {
+      return;
+    }
+
+    for (PersonnageModel personnage in personnages) {
+      await FirebaseServiceFirestore.supprimerDocument(PersonnageModel.nomCollection, personnage.id);
+    }
+
+    for (MembreModel membre in membresModeles) {
+      await FirebaseServiceFirestore.supprimerDocument(MembreModel.nomCollection, membre.id);
+    }
+
+    await FirebaseServiceFirestore.supprimerDocument(ProjetModel.nomCollection, projet!.id);
+    projet = null;
+    notifyListeners();
+  }
+
+  /// Charger un projet
+  static Future supprimerProjet(BuildContext context) async {
+    UtilisateurModel utilisateur = UtilisateurController.getUtilisateur(context)!;
+    ProjetController projetController = Provider.of<ProjetController>(context, listen: false);
+    await projetController._actualiser();
+    await projetController._supprimer();
+    await projetController._chargerProjets(utilisateur);
   }
 }

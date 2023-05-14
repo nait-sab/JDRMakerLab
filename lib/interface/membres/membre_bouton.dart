@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 

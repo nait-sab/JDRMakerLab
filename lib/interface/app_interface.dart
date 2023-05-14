@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
-import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/entete/entete_interface.dart';
 import 'package:jdr_maker/interface/entete/titre_interface.dart';
 import 'package:jdr_maker/interface/membres/membres_interface.dart';
@@ -13,6 +13,7 @@ import 'package:jdr_maker/interface/selection_interface.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
+import 'package:jdr_maker/templates/chargement.dart';
 import 'package:provider/provider.dart';
 
 /// Classe : Interface
@@ -82,6 +83,10 @@ class _AppInterfaceState extends State<AppInterface> {
   }
 
   Widget renduDesktop() {
+    if (chargement) {
+      return Center(child: Chargement());
+    }
+
     return Column(
       children: [
         EnteteInterface(

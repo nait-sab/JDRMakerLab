@@ -12,7 +12,6 @@ import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/tools/generateur_tool.dart';
-import 'package:jdr_maker/views/projet/widgets/projet_modifier_formulaire.dart';
 
 class ProjetRejoindreView extends StatefulWidget {
   @override
