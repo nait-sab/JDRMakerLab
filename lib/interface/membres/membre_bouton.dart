@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/controllers/projet_controller.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
@@ -8,10 +10,12 @@ import 'package:jdr_maker/templates/boutons/bouton.dart';
 class MembreBouton extends StatefulWidget {
   final MembreModel membreModel;
   final UtilisateurModel membre;
+  final bool clicAutoriser;
 
   MembreBouton({
     required this.membreModel,
     required this.membre,
+    required this.clicAutoriser,
   });
 
   @override
@@ -20,8 +24,10 @@ class MembreBouton extends StatefulWidget {
 
 class _MembreBoutonState extends State<MembreBouton> {
   void ouvrirDroits() {
-    MembreController.changerMembre(context, widget.membreModel, widget.membre);
-    changerRoute("/membres/droits");
+    if (widget.clicAutoriser) {
+      MembreController.changerMembre(context, widget.membreModel, widget.membre);
+      changerRoute("/membres/droits");
+    }
   }
 
   void changerRoute(String route) => NavigationController.changerView(context, route);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
+import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/interface/membres/membre_ajout.dart';
 import 'package:jdr_maker/interface/membres/membre_bouton.dart';
 import 'package:jdr_maker/models/membre_model.dart';
@@ -40,13 +41,19 @@ class _MembresInterfaceState extends State<MembresInterface> {
   List<Widget> _getListe() {
     List<Widget> liste = [];
     liste.add(MembreAjout());
+    String idCreateur = ProjetController.getProjet(context)!.idCreateur;
+    String idUtilisateur = UtilisateurController.getUtilisateur(context)!.id;
 
     for (MembreModel membreModel in membresModeles) {
       liste.add(SizedBox(height: 10));
 
       for (UtilisateurModel membre in membres) {
         if (membre.id == membreModel.idMembre) {
-          liste.add(MembreBouton(membreModel: membreModel, membre: membre));
+          liste.add(MembreBouton(
+            membreModel: membreModel,
+            membre: membre,
+            clicAutoriser: idCreateur == idUtilisateur,
+          ));
         }
       }
     }
