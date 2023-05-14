@@ -1,25 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/controllers/membre_controller.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
-class MembreBouton extends StatelessWidget {
-  final UtilisateurModel utilisateur;
+class MembreBouton extends StatefulWidget {
+  final MembreModel membreModel;
+  final UtilisateurModel membre;
 
   MembreBouton({
-    required this.utilisateur,
+    required this.membreModel,
+    required this.membre,
   });
+
+  @override
+  State<MembreBouton> createState() => _MembreBoutonState();
+}
+
+class _MembreBoutonState extends State<MembreBouton> {
+  void ouvrirDroits() {
+    MembreController.changerMembre(context, widget.membreModel, widget.membre);
+    changerRoute("/membres/droits");
+  }
+
+  void changerRoute(String route) => NavigationController.changerView(context, route);
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Bouton(
-        onTap: () {},
+        onTap: ouvrirDroits,
         couleurHover: Colors.white.withOpacity(0.3),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: Image.network(
-            utilisateur.imageUrl,
+            widget.membre.imageUrl,
             width: 50,
             height: 50,
           ),

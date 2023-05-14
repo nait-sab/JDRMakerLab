@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
+import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:provider/provider.dart';
 
 /// Classe : Membre
@@ -10,16 +11,26 @@ import 'package:provider/provider.dart';
 ///
 /// Contient le membre actuel
 class MembreController extends ChangeNotifier {
-  /// Personnage sélectionné
-  MembreModel? membre;
+  // Membre sélectionné
+  MembreModel? membreModel;
+  UtilisateurModel? membre;
 
-  void _actualiser(MembreModel membre) {
+  void _actualiser(MembreModel membreModel, UtilisateurModel membre) {
+    this.membreModel = membreModel;
     this.membre = membre;
     notifyListeners();
   }
 
-  static void changerMembre(BuildContext context, MembreModel membre) {
-    Provider.of<MembreController>(context, listen: false)._actualiser(membre);
+  static void changerMembre(BuildContext context, MembreModel membreModel, UtilisateurModel membre) {
+    Provider.of<MembreController>(context, listen: false)._actualiser(membreModel, membre);
+  }
+
+  static MembreModel? getMembreModel(BuildContext context) {
+    return Provider.of<MembreController>(context, listen: false).membreModel;
+  }
+
+  static UtilisateurModel? getMembre(BuildContext context) {
+    return Provider.of<MembreController>(context, listen: false).membre;
   }
 
   /// Charger les modèles des membres du [projet] demandé

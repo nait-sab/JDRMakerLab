@@ -41,9 +41,14 @@ class _MembresInterfaceState extends State<MembresInterface> {
     List<Widget> liste = [];
     liste.add(MembreAjout());
 
-    for (UtilisateurModel utilisateur in membres) {
+    for (MembreModel membreModel in membresModeles) {
       liste.add(SizedBox(height: 10));
-      liste.add(MembreBouton(utilisateur: utilisateur));
+
+      for (UtilisateurModel membre in membres) {
+        if (membre.id == membreModel.idMembre) {
+          liste.add(MembreBouton(membreModel: membreModel, membre: membre));
+        }
+      }
     }
 
     return liste;

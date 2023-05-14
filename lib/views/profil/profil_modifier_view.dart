@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_auth.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
@@ -7,8 +9,6 @@ import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/alertes/alerte.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/views/profil/widgets/profil_modifier_formulaire.dart';
-
-import '../../config/app.dart';
 
 class ProfilModifierView extends StatefulWidget {
   @override
@@ -63,6 +63,7 @@ class _ProfilModifierViewState extends State<ProfilModifierView> {
   void rafraichir(UtilisateurModel utilisateur) {
     UtilisateurController.changerUtilisateur(context, utilisateur);
     setState(() => chargement = false);
+    NavigationController.changerView(context, "/profil/compte");
   }
 
   @override
