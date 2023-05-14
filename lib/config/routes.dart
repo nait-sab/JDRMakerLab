@@ -7,6 +7,7 @@ import 'package:jdr_maker/views/explorer/explorer_view.dart';
 import 'package:jdr_maker/views/jouer/jouer_view.dart';
 import 'package:jdr_maker/views/login/connexion_view.dart';
 import 'package:jdr_maker/views/login/inscription_view.dart';
+import 'package:jdr_maker/views/profil/profil_modifier_view.dart';
 import 'package:jdr_maker/views/profil/profil_view.dart';
 import 'package:jdr_maker/views/projet/projet_create_view.dart';
 import 'package:jdr_maker/views/projet/projet_modifier_view.dart';
@@ -71,6 +72,10 @@ class Routes {
 
       case "/profil/parametres":
         liste.add(MaterialPage(child: ProfilView(onglet: "parametres")));
+        break;
+
+      case "/profil/modifier":
+        liste.add(MaterialPage(child: ProfilModifierView()));
         break;
 
       case "/nouveau_projet":

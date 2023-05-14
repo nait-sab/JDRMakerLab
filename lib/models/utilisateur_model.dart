@@ -10,14 +10,14 @@ class UtilisateurModel extends ChangeNotifier {
 
   String id;
   String mail;
-  String username;
+  String pseudo;
   String imageUrl;
   bool themeSombre;
 
   UtilisateurModel({
     required this.id,
     required this.mail,
-    required this.username,
+    required this.pseudo,
     required this.imageUrl,
     required this.themeSombre,
   });
@@ -26,7 +26,7 @@ class UtilisateurModel extends ChangeNotifier {
     return {
       "id": id,
       "mail": mail,
-      "username": username,
+      "username": pseudo,
       "imageUrl": imageUrl,
       "themeSombre": themeSombre,
     };
@@ -36,7 +36,7 @@ class UtilisateurModel extends ChangeNotifier {
     return UtilisateurModel(
       id: data["id"],
       mail: data["mail"],
-      username: data["username"],
+      pseudo: data["username"],
       imageUrl: data["imageUrl"],
       themeSombre: data["themeSombre"],
     );

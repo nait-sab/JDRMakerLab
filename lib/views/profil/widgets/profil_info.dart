@@ -43,7 +43,7 @@ class _ProfilInfoState extends State<ProfilInfo> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.utilisateur.username,
+                  widget.utilisateur.pseudo,
                   style: TextStyle(
                     color: App.couleurs().important(),
                     fontSize: App.fontSize().normal(),

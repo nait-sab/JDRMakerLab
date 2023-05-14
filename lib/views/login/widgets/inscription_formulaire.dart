@@ -77,7 +77,7 @@ class _InscriptionFormulaireState extends State<InscriptionFormulaire> {
     // Création de l'utilisateur
     UtilisateurModel utilisateur = UtilisateurModel(
       id: FirebaseServiceAuth.getUtilisateurID(),
-      username: pseudo,
+      pseudo: pseudo,
       mail: mail,
       imageUrl:
           "https://firebasestorage.googleapis.com/v0/b/jdrmakerlab.appspot.com/o/defaut.png?alt=media&token=44435f0a-3992-4d9f-b16f-21c50ce1b266",

@@ -25,9 +25,7 @@ class FirebaseServiceAuth {
   /// Déconnecter le compte actuel
   static Future deconnexion(BuildContext context) async {
     UtilisateurController.retirerUtilisateur(context);
-    return Platform.isAndroid
-        ? await FirebaseAndroidAuth.deconnexion()
-        : await FirebaseDesktopAuth.deconnexion();
+    return Platform.isAndroid ? await FirebaseAndroidAuth.deconnexion() : await FirebaseDesktopAuth.deconnexion();
   }
 
   /// (ANDROID) Récupérer l'utilisateur si il est connecté
@@ -48,5 +46,14 @@ class FirebaseServiceAuth {
       return FirebaseDesktopAuth.getUtilisateurID();
     }
     return "";
+  }
+
+  /// Mettre à jour l'utilisateur (Mail impossible sur Windows)
+  static Future modifierUtilisateur(String pseudo, String mail, String passe) async {
+    if (Platform.isAndroid) {
+      return await FirebaseAndroidAuth.modifierUtilisateur(pseudo, mail, passe);
+    } else {
+      return await FirebaseDesktopAuth.modifierUtilisateur(pseudo, passe);
+    }
   }
 }

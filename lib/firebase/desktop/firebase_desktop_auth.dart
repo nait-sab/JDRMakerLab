@@ -42,4 +42,10 @@ class FirebaseDesktopAuth {
   static String getUtilisateurID() {
     return _instance().userId;
   }
+
+  /// Mettre à jour l'utilisateur
+  static Future modifierUtilisateur(String pseudo, String passe) async {
+    await _instance().updateProfile(displayName: pseudo);
+    await _instance().changePassword(passe);
+  }
 }

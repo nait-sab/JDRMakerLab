@@ -91,7 +91,7 @@ class _ProfilParametresState extends State<ProfilParametres> {
     List<Widget> liste = [
       ProfilParametreBouton(
         nom: "Modifier mon profil",
-        action: () {},
+        action: () => changerRoute("/profil/modifier"),
       ),
     ];
 

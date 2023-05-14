@@ -35,4 +35,11 @@ class FirebaseAndroidAuth {
   static User? getUtilisateur() {
     return _instance().currentUser;
   }
+
+  /// Mettre à jour l'utilisateur
+  static Future modifierUtilisateur(String pseudo, String mail, String passe) async {
+    await _instance().currentUser!.updateDisplayName(pseudo);
+    await _instance().currentUser!.updateEmail(mail);
+    await _instance().currentUser!.updatePassword(passe);
+  }
 }

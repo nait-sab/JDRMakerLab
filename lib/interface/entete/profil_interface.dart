@@ -31,7 +31,7 @@ class ProfilInterface extends StatelessWidget {
             SizedBox(width: 10),
             Flexible(
               child: Text(
-                utilisateur.username,
+                utilisateur.pseudo,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: App.couleurs().important(),
