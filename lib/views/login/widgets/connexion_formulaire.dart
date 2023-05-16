@@ -73,6 +73,12 @@ class _ConnexionFormulaireState extends State<ConnexionFormulaire> {
       FirebaseServiceAuth.getUtilisateurID(),
     );
 
+    print(utilisateurData["id"]);
+    print(utilisateurData["pseudo"]);
+    print(utilisateurData["mail"]);
+    print(utilisateurData["imageUrl"]);
+    print(utilisateurData["themeSombre"]);
+
     UtilisateurModel utilisateur = UtilisateurModel.fromMap(utilisateurData);
     _chargerUtilisateur(utilisateur);
 

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/views/amis/amis_view.dart';
+import 'package:jdr_maker/views/editeur/apps/lieu/lieu_ajouter_view.dart';
+import 'package:jdr_maker/views/editeur/apps/lieu/lieu_liste_view.dart';
+import 'package:jdr_maker/views/editeur/apps/lieu/lieu_modifier_view.dart';
+import 'package:jdr_maker/views/editeur/apps/lieu/lieu_vue_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_liste_view.dart';
 import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
@@ -113,8 +117,26 @@ class Routes {
       case "/editeur/personnage/modifier":
         liste.add(MaterialPage(child: JouerView()));
         break;
-    }
 
+      // =======================================================
+      // Application - Lieu
+      // =======================================================
+      case "/editeur/lieu/liste":
+        liste.add(MaterialPage(child: LieuListeView()));
+        break;
+
+      case "/editeur/lieu/ajouter":
+        liste.add(MaterialPage(child: LieuAjouterView()));
+        break;
+
+      case "/editeur/lieu/modifier":
+        liste.add(MaterialPage(child: LieuModifierView()));
+        break;
+
+      case "/editeur/lieu/vue":
+        liste.add(MaterialPage(child: LieuVueView()));
+        break;
+    }
     return liste;
   }
 }

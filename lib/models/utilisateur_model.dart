@@ -26,7 +26,7 @@ class UtilisateurModel extends ChangeNotifier {
     return {
       "id": id,
       "mail": mail,
-      "username": pseudo,
+      "pseudo": pseudo,
       "imageUrl": imageUrl,
       "themeSombre": themeSombre,
     };
@@ -36,7 +36,7 @@ class UtilisateurModel extends ChangeNotifier {
     return UtilisateurModel(
       id: data["id"],
       mail: data["mail"],
-      pseudo: data["username"],
+      pseudo: data["pseudo"],
       imageUrl: data["imageUrl"],
       themeSombre: data["themeSombre"],
     );

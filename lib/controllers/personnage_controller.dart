@@ -22,6 +22,10 @@ class PersonnageController extends ChangeNotifier {
     Provider.of<PersonnageController>(context, listen: false)._actualiser(personnage);
   }
 
+  static PersonnageModel? getLieu(BuildContext context) {
+    return Provider.of<PersonnageController>(context, listen: false).personnage;
+  }
+
   /// Charger les personnages du [projet] demandé
   static Future<List<PersonnageModel>> chargerPersonnages(ProjetModel projet) async {
     List<PersonnageModel> liste = [];

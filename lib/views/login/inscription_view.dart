@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jdr_maker/config/app.dart';
@@ -22,12 +21,8 @@ class _InscriptionViewState extends State<InscriptionView> {
   @override
   Widget build(BuildContext context) {
     return AppInterface(
-      child: Platform.isAndroid ? renduAndroid() : renduDesktop(),
+      child: renduDesktop(),
     );
-  }
-
-  Widget renduAndroid() {
-    return Container();
   }
 
   Widget renduDesktop() {

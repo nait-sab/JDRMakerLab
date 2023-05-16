@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
-import 'package:jdr_maker/controllers/projet_controller.dart';
-import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';

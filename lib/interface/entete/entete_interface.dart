@@ -9,7 +9,6 @@ import 'package:jdr_maker/interface/entete/profil_interface.dart';
 import 'package:jdr_maker/interface/entete/recherche_interface.dart';
 import 'package:jdr_maker/interface/entete/titre_interface.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
-import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/boutons/boutons_desktop.dart';
 
 class EnteteInterface extends StatefulWidget {
@@ -73,26 +72,31 @@ class _EnteteInterfaceState extends State<EnteteInterface> {
       liste.add(Spacer());
     }
 
-    liste.add(BoutonsWindows());
+    if (Platform.isWindows) {
+      liste.add(BoutonsWindows());
+    }
+
     return liste;
   }
 
   Widget renduAndroid() {
     return Container(
       height: 75,
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 3, color: App.couleurs().fondSecondaire()),
+        ),
+      ),
       child: Row(
         children: [
-          BoutonIcone(
-            icone: Icons.menu_rounded,
-            action: () {},
-            couleur: Colors.transparent,
+          TitreInterface(
+            projetController: widget.projetController,
+            action: widget.actionTitre,
           ),
-          Spacer(),
-          BoutonIcone(
-            icone: Icons.group_rounded,
-            action: () {},
-            couleur: App.couleurs().fondSecondaire(),
+          Expanded(
+            child: Row(
+              children: _getEntete(),
+            ),
           ),
         ],
       ),

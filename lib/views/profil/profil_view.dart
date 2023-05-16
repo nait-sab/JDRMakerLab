@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:jdr_maker/config/app.dart';
@@ -54,7 +52,7 @@ class _ProfilViewState extends State<ProfilView> {
               ProfilInfo(utilisateur: utilisateur),
               SizedBox(height: 20),
               StaggeredGrid.count(
-                crossAxisCount: Platform.isAndroid ? 1 : 3,
+                crossAxisCount: 3,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
                 children: [

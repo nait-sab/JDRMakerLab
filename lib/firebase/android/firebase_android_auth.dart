@@ -18,7 +18,8 @@ class FirebaseAndroidAuth {
     try {
       await _instance().signInWithEmailAndPassword(email: mail, password: passe);
       return true;
-    } on FirebaseAuthException {
+    } on FirebaseAuthException catch (erreur) {
+      print(erreur.code);
       return false;
     }
   }

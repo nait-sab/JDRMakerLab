@@ -6,7 +6,6 @@ import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/interface/entete/entete_interface.dart';
-import 'package:jdr_maker/interface/entete/titre_interface.dart';
 import 'package:jdr_maker/interface/membres/membres_interface.dart';
 import 'package:jdr_maker/interface/menu/menu_interface.dart';
 import 'package:jdr_maker/interface/selection_interface.dart';
@@ -67,7 +66,8 @@ class _AppInterfaceState extends State<AppInterface> {
     }
   }
 
-  Future _chargerProjet(ProjetModel projet) async => await ProjetController.charger(context, projet);
+  Future _chargerProjet(ProjetModel projet) async =>
+      await ProjetController.charger(context, projet);
 
   void switchChargement() => setState(() => chargement = !chargement);
   void changerSelection() => setState(() => selectionVisible = !selectionVisible);
@@ -80,36 +80,38 @@ class _AppInterfaceState extends State<AppInterface> {
 
     return Scaffold(
       backgroundColor: App.couleurs().fondPrincipale(),
-      body: Platform.isAndroid ? renduAndroid() : renduDesktop(),
+      body: contenu(),
     );
   }
 
-  Widget renduDesktop() {
+  Widget contenu() {
     if (chargement) {
       return Center(child: Chargement());
     }
 
-    return Column(
-      children: [
-        EnteteInterface(
-          projetController: projetController,
-          actionTitre: changerSelection,
-        ),
-        Expanded(
-          child: Stack(
-            children: [
-              Row(
-                children: [
-                  _getMenuDesktop(),
-                  Expanded(child: widget.child),
-                  _getMembres(),
-                ],
-              ),
-              _selection(),
-            ],
+    return verifyAndroid(
+      Column(
+        children: [
+          EnteteInterface(
+            projetController: projetController,
+            actionTitre: changerSelection,
           ),
-        ),
-      ],
+          Expanded(
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    _getMenuDesktop(),
+                    Expanded(child: widget.child),
+                    _getMembres(),
+                  ],
+                ),
+                _selection(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -140,21 +142,11 @@ class _AppInterfaceState extends State<AppInterface> {
     );
   }
 
-  Widget renduAndroid() {
-    return SafeArea(
-      child: Column(
-        children: [
-          EnteteInterface(projetController: projetController, actionTitre: changerSelection),
-          TitreInterface(projetController: projetController, action: changerSelection),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: widget.child,
-            ),
-          ),
-          MenuInterface(),
-        ],
-      ),
-    );
+  Widget verifyAndroid(Widget child) {
+    if (Platform.isAndroid) {
+      return SafeArea(child: child);
+    }
+
+    return child;
   }
 }

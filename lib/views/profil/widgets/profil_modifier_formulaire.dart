@@ -157,7 +157,7 @@ class _ProfilModifierFormulaireState extends State<ProfilModifierFormulaire> {
             action: () => widget.modifier(pseudo.text, mail.text, passe.text),
             icone: Icons.done_rounded,
           ),
-        )
+        ),
       ],
     );
   }

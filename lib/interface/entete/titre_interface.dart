@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
@@ -17,10 +15,6 @@ class TitreInterface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
-      return renduAndroid();
-    }
-
     if (UtilisateurController.getUtilisateur(context) != null) {
       return renduDynamique();
     }
@@ -80,49 +74,6 @@ class TitreInterface extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget renduAndroid() {
-    return Container(
-      height: 50,
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: App.couleurs().fondSecondaire(),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: Bouton(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(10),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      _getTitre(),
-                      style: TextStyle(
-                        color: App.couleurs().important(),
-                        fontSize: App.fontSize().normal(),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                Icon(
-                  Icons.expand_more_rounded,
-                  color: App.couleurs().important(),
-                  size: App.fontSize().titre(),
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

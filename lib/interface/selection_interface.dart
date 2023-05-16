@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
@@ -33,7 +31,7 @@ class _SelectionInterfaceState extends State<SelectionInterface> {
     Size ecran = MediaQuery.of(context).size;
 
     return Container(
-      width: Platform.isAndroid ? double.infinity : ecran.width / 4,
+      width: ecran.width / 4,
       decoration: BoxDecoration(
         border: Border.all(color: App.couleurs().texte()),
         color: App.couleurs().fondPrincipale(),

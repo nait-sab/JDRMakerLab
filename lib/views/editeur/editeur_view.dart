@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:jdr_maker/config/app.dart';
@@ -71,7 +69,7 @@ class _EditeurViewState extends State<EditeurView> {
               EditeurInfo(),
               SizedBox(height: 20),
               StaggeredGrid.count(
-                crossAxisCount: Platform.isAndroid ? 1 : 3,
+                crossAxisCount: 3,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
                 children: [
@@ -98,10 +96,10 @@ class _EditeurViewState extends State<EditeurView> {
                   ),
                   EditeurApplication(
                     nom: "Lieux",
-                    route: "",
+                    route: "/editeur/lieu/liste",
                     icone: Icons.location_on_rounded,
                     iconeCouleur: App.couleurs().violet(),
-                    total: 0,
+                    total: projetController.lieux.length,
                   ),
                   EditeurApplication(
                     nom: "Objets",

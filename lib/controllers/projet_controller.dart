@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/controllers/lieu_controller.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/personnage_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/personnage_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
@@ -18,6 +20,7 @@ class ProjetController extends ChangeNotifier {
   /// Liste des projets
   List<ProjetModel> projets = [];
   List<PersonnageModel> personnages = [];
+  List<LieuModel> lieux = [];
 
   // Membres
   List<MembreModel> membresModeles = [];
@@ -45,6 +48,11 @@ class ProjetController extends ChangeNotifier {
     return Provider.of<ProjetController>(context, listen: false).personnages;
   }
 
+  /// Récupérer les personnages du projet actuel
+  static List<LieuModel> getLieux(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).lieux;
+  }
+
   /// Récupérer les modèles des membres du projet actuel
   static List<MembreModel> getMembreModeles(BuildContext context) {
     return Provider.of<ProjetController>(context, listen: false).membresModeles;
@@ -58,7 +66,6 @@ class ProjetController extends ChangeNotifier {
   // =========================================================
   // Actualiser le projet
   // =========================================================
-
   Future _actualiser() async {
     print("Actualisation call");
 
@@ -68,6 +75,7 @@ class ProjetController extends ChangeNotifier {
     }
 
     personnages = await PersonnageController.chargerPersonnages(projet!);
+    lieux = await LieuController.chargerLieux(projet!);
     membresModeles = await MembreController.chargerMembresModeles(projet!);
     membres = await UtilisateurController.chargerMembres(membresModeles);
 
@@ -88,6 +96,8 @@ class ProjetController extends ChangeNotifier {
 
     this.projet = projet;
     personnages = await PersonnageController.chargerPersonnages(projet);
+    lieux = await LieuController.chargerLieux(projet);
+    print(lieux.length);
     membresModeles = await MembreController.chargerMembresModeles(projet);
     membres = await UtilisateurController.chargerMembres(membresModeles);
 
@@ -109,6 +119,7 @@ class ProjetController extends ChangeNotifier {
     projet = null;
     projets = [];
     personnages = [];
+    lieux = [];
     membresModeles = [];
     membres = [];
 
@@ -165,7 +176,8 @@ class ProjetController extends ChangeNotifier {
     }
 
     for (PersonnageModel personnage in personnages) {
-      await FirebaseServiceFirestore.supprimerDocument(PersonnageModel.nomCollection, personnage.id);
+      await FirebaseServiceFirestore.supprimerDocument(
+          PersonnageModel.nomCollection, personnage.id);
     }
 
     for (MembreModel membre in membresModeles) {
