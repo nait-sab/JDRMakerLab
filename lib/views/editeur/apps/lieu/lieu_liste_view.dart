@@ -17,10 +17,55 @@ class LieuListeView extends StatefulWidget {
 class _LieuListeViewState extends State<LieuListeView> {
   late List<LieuModel> lieux;
 
+  late bool isTriAscNom;
+  late bool isTriAscDate;
+  late bool isTriDescNom;
+  late bool isTriDescDate;
+
   @override
   void initState() {
     super.initState();
     lieux = ProjetController.getLieux(context);
+  }
+
+  void trierAscendantNom() {
+    setState(() {
+      isTriAscNom = true;
+      isTriAscDate = false;
+      isTriDescNom = false;
+      isTriDescDate = false;
+      lieux.sort((a, b) => a.nom.compareTo(b.nom));
+    });
+  }
+
+  void trierAscendantDate() {
+    setState(() {
+      isTriAscNom = false;
+      isTriAscDate = true;
+      isTriDescNom = false;
+      isTriDescDate = false;
+      lieux.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+    });
+  }
+
+  void trierDescendantNom() {
+    setState(() {
+      isTriAscNom = false;
+      isTriAscDate = false;
+      isTriDescNom = true;
+      isTriDescDate = false;
+      lieux.sort((a, b) => b.nom.compareTo(a.nom));
+    });
+  }
+
+  void trierDescendantDate() {
+    setState(() {
+      isTriAscNom = false;
+      isTriAscDate = false;
+      isTriDescNom = false;
+      isTriDescDate = true;
+      lieux.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+    });
   }
 
   void versCreation() => NavigationController.changerView(context, "/editeur/lieu/ajouter");
@@ -44,7 +89,16 @@ class _LieuListeViewState extends State<LieuListeView> {
                   titre: "Lieux",
                   route: "/editeur",
                 ),
-                LieuListeEntete(),
+                LieuListeEntete(
+                  triAscNom: trierAscendantNom,
+                  triAscDate: trierAscendantDate,
+                  triDescNom: trierDescendantNom,
+                  triDescDate: trierDescendantDate,
+                  isTriAscNom: isTriAscNom,
+                  isTriAscDate: isTriAscDate,
+                  isTriDescNom: isTriDescNom,
+                  isTriDescDate: isTriDescDate,
+                ),
                 LieuListe(lieux: lieux),
               ],
             ),

@@ -3,11 +3,37 @@ import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 
 class LieuListeEntete extends StatefulWidget {
+  final VoidCallback triAscNom;
+  final VoidCallback triAscDate;
+  final VoidCallback triDescNom;
+  final VoidCallback triDescDate;
+
+  final bool isTriAscNom;
+  final bool isTriAscDate;
+  final bool isTriDescNom;
+  final bool isTriDescDate;
+
+  LieuListeEntete({
+    required this.triAscNom,
+    required this.triAscDate,
+    required this.triDescNom,
+    required this.triDescDate,
+    required this.isTriAscNom,
+    required this.isTriAscDate,
+    required this.isTriDescNom,
+    required this.isTriDescDate,
+  });
+
   @override
   State<LieuListeEntete> createState() => _LieuListeEnteteState();
 }
 
 class _LieuListeEnteteState extends State<LieuListeEntete> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,13 +59,13 @@ class _LieuListeEnteteState extends State<LieuListeEntete> {
                 children: [
                   boutonTri(
                     Icons.expand_less_rounded,
-                    false,
-                    () {},
+                    widget.isTriDescNom,
+                    widget.triDescNom,
                   ),
                   boutonTri(
                     Icons.expand_more_rounded,
-                    false,
-                    () {},
+                    widget.isTriAscNom,
+                    widget.triAscNom,
                   ),
                 ],
               ),
@@ -59,13 +85,13 @@ class _LieuListeEnteteState extends State<LieuListeEntete> {
                 children: [
                   boutonTri(
                     Icons.expand_less_rounded,
-                    false,
-                    () {},
+                    widget.isTriDescDate,
+                    widget.triDescDate,
                   ),
                   boutonTri(
                     Icons.expand_more_rounded,
-                    true,
-                    () {},
+                    widget.isTriAscDate,
+                    widget.triAscDate,
                   ),
                 ],
               ),
