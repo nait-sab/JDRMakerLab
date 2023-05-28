@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/controllers/navigation_controller.dart';
-import 'package:jdr_maker/controllers/projet_controller.dart';
-import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/models/lieu_model.dart';
-import 'package:jdr_maker/templates/alertes/alerte.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/champs/champ_zone.dart';
@@ -13,7 +9,7 @@ import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.
 class LieuModifierFormulaire extends StatefulWidget {
   final LieuModel lieu;
   final Function modifier;
-  final Function supprimer;
+  final VoidCallback supprimer;
 
   LieuModifierFormulaire({
     required this.lieu,
@@ -44,8 +40,8 @@ class _LieuModifierFormulaireState extends State<LieuModifierFormulaire> {
         Column(
           children: [
             EditeurApplicationEntete(
-              titre: "Modifier un lieu",
-              route: "/editeur/lieu/liste",
+              titre: "Modifier le lieu : ${widget.lieu.nom}",
+              route: "/editeur/lieu/vue",
             ),
             SizedBox(height: 20),
             Expanded(
@@ -115,17 +111,17 @@ class _LieuModifierFormulaireState extends State<LieuModifierFormulaire> {
         Align(
           alignment: Alignment.bottomLeft,
           child: BoutonIcone(
-            action: () => widget.supprimer(widget.lieu),
-            icone: Icons.delete_rounded,
+            action: widget.supprimer,
+            icone: Icons.close_rounded,
             couleur: App.couleurs().rouge(),
           ),
         ),
-        boutonAjouter(),
+        boutonConfirmer(),
       ],
     );
   }
 
-  Widget boutonAjouter() {
+  Widget boutonConfirmer() {
     if (nom.text.isEmpty) {
       return Container();
     }

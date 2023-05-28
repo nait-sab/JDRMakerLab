@@ -7,7 +7,6 @@ import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
 import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
-import 'package:jdr_maker/templates/alertes/alerte.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/tools/generateur_tool.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/widget/lieu_modifier_formulaire.dart';
@@ -50,22 +49,7 @@ class _LieuModifierViewState extends State<LieuModifierView> {
 
     await actualiser();
     rafraichir();
-    changerRoute("/editeur/lieu/liste");
-  }
-
-  Future supprimer(LieuModel lieu) async {
-    Alerte.demander(
-      context,
-      "Supprimer un lieu",
-      "Souhaitez-vous vraiment supprimer le lieu \"${lieu.nom}\" ?",
-      () async {
-        rafraichir();
-        await FirebaseServiceFirestore.supprimerDocument(LieuModel.nomCollection, lieu.id);
-        await actualiser();
-        rafraichir();
-        changerRoute("/editeur/lieu/liste");
-      },
-    );
+    changerRoute("/editeur/lieu/vue");
   }
 
   Future actualiser() async => await ProjetController.actualiser(context);
@@ -96,7 +80,7 @@ class _LieuModifierViewState extends State<LieuModifierView> {
     return LieuModifierFormulaire(
       lieu: LieuController.getLieu(context)!,
       modifier: modifier,
-      supprimer: supprimer,
+      supprimer: () => changerRoute("/editeur/lieu/vue"),
     );
   }
 }

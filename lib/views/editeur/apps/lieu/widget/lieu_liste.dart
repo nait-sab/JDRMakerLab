@@ -19,7 +19,7 @@ class LieuListe extends StatefulWidget {
 class _LieuListeState extends State<LieuListe> {
   Future modifier(LieuModel lieu) async {
     LieuController.changerLieu(context, lieu);
-    NavigationController.changerView(context, "/editeur/lieu/modifier");
+    NavigationController.changerView(context, "/editeur/lieu/vue");
   }
 
   @override
