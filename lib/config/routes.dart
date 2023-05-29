@@ -5,6 +5,7 @@ import 'package:jdr_maker/views/editeur/apps/lieu/lieu_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_modifier_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_vue_view.dart';
+import 'package:jdr_maker/views/editeur/apps/personnage/personnage_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_liste_view.dart';
 import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
@@ -106,15 +107,15 @@ class Routes {
         liste.add(MaterialPage(child: PersonnageListeView()));
         break;
 
-      case "/editeur/personnage/vue":
-        liste.add(MaterialPage(child: JouerView()));
-        break;
-
       case "/editeur/personnage/ajouter":
-        liste.add(MaterialPage(child: JouerView()));
+        liste.add(MaterialPage(child: PersonnageAjouterView()));
         break;
 
       case "/editeur/personnage/modifier":
+        liste.add(MaterialPage(child: JouerView()));
+        break;
+
+      case "/editeur/personnage/vue":
         liste.add(MaterialPage(child: JouerView()));
         break;
 

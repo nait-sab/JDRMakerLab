@@ -14,15 +14,13 @@ class PersonnageModel extends ChangeNotifier {
   String dateModification;
   String nom;
   String age;
+  String taille;
   String poids;
   String description;
   String histoire;
 
   /// Métier ou rôle du personnage
   String occupation;
-
-  /// Sexe du personnage (true: Masculin)
-  bool sexe;
 
   /// URL de l'icône utilisé en jeu
   String urlIcone;
@@ -37,11 +35,11 @@ class PersonnageModel extends ChangeNotifier {
     required this.dateModification,
     required this.nom,
     required this.age,
+    required this.taille,
     required this.poids,
     required this.description,
     required this.histoire,
     required this.occupation,
-    required this.sexe,
     required this.urlIcone,
     required this.urlImage,
   });
@@ -54,11 +52,11 @@ class PersonnageModel extends ChangeNotifier {
       "dateModification": dateModification,
       "nom": nom,
       "age": age,
+      "taille": taille,
       "poids": poids,
       "description": description,
       "histoire": histoire,
       "occupation": occupation,
-      "sexe": sexe,
       "urlIcone": urlIcone,
       "urlImage": urlImage,
     };
@@ -72,11 +70,11 @@ class PersonnageModel extends ChangeNotifier {
       dateModification: data["dateModification"],
       nom: data["nom"],
       age: data["age"],
+      taille: data["taille"],
       poids: data["poids"],
       description: data["description"],
       histoire: data["histoire"],
       occupation: data["occupation"],
-      sexe: data["sexe"],
       urlIcone: data["urlIcone"],
       urlImage: data["urlImage"],
     );

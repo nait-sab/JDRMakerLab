@@ -97,7 +97,6 @@ class ProjetController extends ChangeNotifier {
     this.projet = projet;
     personnages = await PersonnageController.chargerPersonnages(projet);
     lieux = await LieuController.chargerLieux(projet);
-    print(lieux.length);
     membresModeles = await MembreController.chargerMembresModeles(projet);
     membres = await UtilisateurController.chargerMembres(membresModeles);
 
@@ -176,8 +175,7 @@ class ProjetController extends ChangeNotifier {
     }
 
     for (PersonnageModel personnage in personnages) {
-      await FirebaseServiceFirestore.supprimerDocument(
-          PersonnageModel.nomCollection, personnage.id);
+      await FirebaseServiceFirestore.supprimerDocument(PersonnageModel.nomCollection, personnage.id);
     }
 
     for (MembreModel membre in membresModeles) {
