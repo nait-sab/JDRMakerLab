@@ -92,7 +92,7 @@ class _EditeurViewState extends State<EditeurView> {
                     route: "/editeur/personnage/liste",
                     icone: Icons.group_rounded,
                     iconeCouleur: App.couleurs().vert(),
-                    total: 0,
+                    total: projetController.personnages.length,
                   ),
                   EditeurApplication(
                     nom: "Lieux",

@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
+import 'package:jdr_maker/models/personnage_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/champs/champ_zone.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/widget/personnage_image.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
 
-class PersonnageAjouterFormulaire extends StatefulWidget {
-  final Function creer;
+class PersonnageModifierFormulaire extends StatefulWidget {
+  final PersonnageModel personnage;
+  final Function modifier;
 
-  PersonnageAjouterFormulaire({
-    required this.creer,
+  PersonnageModifierFormulaire({
+    required this.personnage,
+    required this.modifier,
   });
 
   @override
-  State<PersonnageAjouterFormulaire> createState() => _PersonnageAjouterFormulaireState();
+  State<PersonnageModifierFormulaire> createState() => _PersonnageModifierFormulaireState();
 }
 
-class _PersonnageAjouterFormulaireState extends State<PersonnageAjouterFormulaire> {
+class _PersonnageModifierFormulaireState extends State<PersonnageModifierFormulaire> {
   late TextEditingController nom;
   late TextEditingController occupation;
   late TextEditingController age;
@@ -31,14 +35,15 @@ class _PersonnageAjouterFormulaireState extends State<PersonnageAjouterFormulair
   @override
   void initState() {
     super.initState();
-    nom = TextEditingController();
-    occupation = TextEditingController();
-    age = TextEditingController();
-    taille = TextEditingController();
-    poids = TextEditingController();
-    description = TextEditingController();
-    histoire = TextEditingController();
-    urlIcone = urlImage = "";
+    nom = TextEditingController(text: widget.personnage.nom);
+    occupation = TextEditingController(text: widget.personnage.occupation);
+    age = TextEditingController(text: widget.personnage.age);
+    taille = TextEditingController(text: widget.personnage.taille);
+    poids = TextEditingController(text: widget.personnage.poids);
+    description = TextEditingController(text: widget.personnage.description);
+    histoire = TextEditingController(text: widget.personnage.histoire);
+    urlIcone = widget.personnage.urlIcone;
+    urlImage = widget.personnage.urlImage;
     nom.addListener(() => setState(() {}));
   }
 
@@ -52,8 +57,8 @@ class _PersonnageAjouterFormulaireState extends State<PersonnageAjouterFormulair
         Column(
           children: [
             EditeurApplicationEntete(
-              titre: "Nouveau personnage",
-              route: "/editeur/personnage/liste",
+              titre: "Modifier le personnage : ${widget.personnage.nom}",
+              route: "/editeur/personnage/vue",
             ),
             SizedBox(height: 20),
             Expanded(
@@ -327,12 +332,20 @@ class _PersonnageAjouterFormulaireState extends State<PersonnageAjouterFormulair
             ),
           ],
         ),
-        boutonAjouter(),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: BoutonIcone(
+            action: () => NavigationController.changerView(context, "/editeur/personnage/vue"),
+            icone: Icons.close_rounded,
+            couleur: App.couleurs().rouge(),
+          ),
+        ),
+        boutonConfirmer(),
       ],
     );
   }
 
-  Widget boutonAjouter() {
+  Widget boutonConfirmer() {
     if (nom.text.isEmpty) {
       return Container();
     }
@@ -340,7 +353,7 @@ class _PersonnageAjouterFormulaireState extends State<PersonnageAjouterFormulair
     return Align(
       alignment: Alignment.bottomRight,
       child: BoutonIcone(
-        action: () => widget.creer(
+        action: () => widget.modifier(
           nom.text,
           occupation.text,
           age.text,

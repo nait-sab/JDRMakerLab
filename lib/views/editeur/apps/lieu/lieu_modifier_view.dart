@@ -80,7 +80,6 @@ class _LieuModifierViewState extends State<LieuModifierView> {
     return LieuModifierFormulaire(
       lieu: LieuController.getLieu(context)!,
       modifier: modifier,
-      supprimer: () => changerRoute("/editeur/lieu/vue"),
     );
   }
 }

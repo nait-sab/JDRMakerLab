@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
+import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
@@ -9,12 +10,10 @@ import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.
 class LieuModifierFormulaire extends StatefulWidget {
   final LieuModel lieu;
   final Function modifier;
-  final VoidCallback supprimer;
 
   LieuModifierFormulaire({
     required this.lieu,
     required this.modifier,
-    required this.supprimer,
   });
 
   @override
@@ -111,7 +110,7 @@ class _LieuModifierFormulaireState extends State<LieuModifierFormulaire> {
         Align(
           alignment: Alignment.bottomLeft,
           child: BoutonIcone(
-            action: widget.supprimer,
+            action: () => NavigationController.changerView(context, "/editeur/lieu/vue"),
             icone: Icons.close_rounded,
             couleur: App.couleurs().rouge(),
           ),
