@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
-import 'package:jdr_maker/models/evenement_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/systeme_model.dart';
 import 'package:provider/provider.dart';
