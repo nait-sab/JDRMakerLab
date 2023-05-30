@@ -22,7 +22,7 @@ class PersonnageController extends ChangeNotifier {
     Provider.of<PersonnageController>(context, listen: false)._actualiser(personnage);
   }
 
-  static PersonnageModel? getLieu(BuildContext context) {
+  static PersonnageModel? getPersonnage(BuildContext context) {
     return Provider.of<PersonnageController>(context, listen: false).personnage;
   }
 

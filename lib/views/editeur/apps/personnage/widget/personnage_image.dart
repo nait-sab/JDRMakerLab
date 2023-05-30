@@ -74,6 +74,10 @@ class _PersonnageImageState extends State<PersonnageImage> {
   }
 
   Widget _boutonProfil(VoidCallback action, Color couleur, IconData icone) {
+    if (!widget.modifiable) {
+      return Container();
+    }
+
     return Container(
       height: 50,
       width: 50,
