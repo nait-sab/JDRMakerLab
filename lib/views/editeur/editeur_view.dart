@@ -85,7 +85,7 @@ class _EditeurViewState extends State<EditeurView> {
                     route: "/editeur/evenement/liste",
                     icone: Icons.menu_book_rounded,
                     iconeCouleur: App.couleurs().rouge(),
-                    total: projetController.personnages.length,
+                    total: projetController.evenements.length,
                   ),
                   EditeurApplication(
                     nom: "Personnages",

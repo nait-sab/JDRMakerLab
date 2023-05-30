@@ -57,12 +57,24 @@ class _EvenementListeState extends State<EvenementListe> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  evenement.nom,
-                  style: TextStyle(
-                    color: App.couleurs().important(),
-                    fontSize: App.fontSize().normal(),
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      evenement.numero,
+                      style: TextStyle(
+                        color: App.couleurs().important(),
+                        fontSize: App.fontSize().normal(),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Text(
+                      evenement.nom,
+                      style: TextStyle(
+                        color: App.couleurs().important(),
+                        fontSize: App.fontSize().normal(),
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   children: [

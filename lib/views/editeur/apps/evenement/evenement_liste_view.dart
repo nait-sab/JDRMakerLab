@@ -28,12 +28,7 @@ class _EvenementListeViewState extends State<EvenementListeView> {
   void initState() {
     super.initState();
     evenements = ProjetController.getEvenements(context);
-    isTriAscNumero = false;
-    isTriDescNumero = false;
-    isTriAscNom = false;
-    isTriAscDate = false;
-    isTriDescNom = false;
-    isTriDescDate = true;
+    trierAscendantNumero();
   }
 
   void trierAscendantNumero() {
@@ -108,7 +103,7 @@ class _EvenementListeViewState extends State<EvenementListeView> {
     });
   }
 
-  void versCreation() => NavigationController.changerView(context, "/editeur/lieu/ajouter");
+  void versCreation() => NavigationController.changerView(context, "/editeur/evenement/ajouter");
 
   @override
   Widget build(BuildContext context) {

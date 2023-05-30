@@ -26,10 +26,7 @@ class _LieuListeViewState extends State<LieuListeView> {
   void initState() {
     super.initState();
     lieux = ProjetController.getLieux(context);
-    isTriAscNom = false;
-    isTriAscDate = false;
-    isTriDescNom = false;
-    isTriDescDate = true;
+    trierDescendantDate();
   }
 
   void trierAscendantNom() {

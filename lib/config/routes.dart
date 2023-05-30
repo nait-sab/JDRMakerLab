@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/views/amis/amis_view.dart';
+import 'package:jdr_maker/views/editeur/apps/evenement/evenement_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/evenement/evenement_liste_view.dart';
+import 'package:jdr_maker/views/editeur/apps/evenement/evenement_modifier_view.dart';
+import 'package:jdr_maker/views/editeur/apps/evenement/evenement_vue_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_modifier_view.dart';
@@ -130,15 +133,15 @@ class Routes {
         break;
 
       case "/editeur/evenement/ajouter":
-        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        liste.add(MaterialPage(child: EvenementAjouterView()));
         break;
 
       case "/editeur/evenement/modifier":
-        liste.add(MaterialPage(child: PersonnageModifierView()));
+        liste.add(MaterialPage(child: EvenementModifierView()));
         break;
 
       case "/editeur/evenement/vue":
-        liste.add(MaterialPage(child: PersonnageVueView()));
+        liste.add(MaterialPage(child: EvenementVueView()));
         break;
 
       // =======================================================

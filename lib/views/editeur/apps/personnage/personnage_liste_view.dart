@@ -28,12 +28,7 @@ class _PersonnageListeViewState extends State<PersonnageListeView> {
   void initState() {
     super.initState();
     personnages = ProjetController.getPersonnages(context);
-    isTriAscNom = false;
-    isTriAscOccupation = false;
-    isTriAscDate = false;
-    isTriDescNom = false;
-    isTriDescOccupation = false;
-    isTriDescDate = true;
+    trierDescendantDate();
   }
 
   void trierAscendantNom() {
