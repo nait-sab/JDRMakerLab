@@ -75,14 +75,14 @@ class _EditeurViewState extends State<EditeurView> {
                 children: [
                   EditeurApplication(
                     nom: "Systèmes de jeu",
-                    route: "",
+                    route: "/editeur/systeme/liste",
                     icone: Icons.warning_rounded,
                     iconeCouleur: App.couleurs().jaune(),
                     total: 0,
                   ),
                   EditeurApplication(
                     nom: "Événements",
-                    route: "",
+                    route: "/editeur/evenement/liste",
                     icone: Icons.menu_book_rounded,
                     iconeCouleur: App.couleurs().rouge(),
                     total: projetController.personnages.length,
@@ -103,7 +103,7 @@ class _EditeurViewState extends State<EditeurView> {
                   ),
                   EditeurApplication(
                     nom: "Objets",
-                    route: "",
+                    route: "/editeur/objet/liste",
                     icone: Icons.diamond_rounded,
                     iconeCouleur: App.couleurs().bleu(),
                     total: 0,

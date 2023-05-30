@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/views/amis/amis_view.dart';
+import 'package:jdr_maker/views/editeur/apps/evenement/evenement_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_modifier_view.dart';
@@ -103,6 +104,44 @@ class Routes {
         break;
 
       // =======================================================
+      // Application - Système
+      // =======================================================
+      case "/editeur/systeme/liste":
+        liste.add(MaterialPage(child: EvenementListeView()));
+        break;
+
+      case "/editeur/systeme/ajouter":
+        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        break;
+
+      case "/editeur/systeme/modifier":
+        liste.add(MaterialPage(child: PersonnageModifierView()));
+        break;
+
+      case "/editeur/systeme/vue":
+        liste.add(MaterialPage(child: PersonnageVueView()));
+        break;
+
+      // =======================================================
+      // Application - Evenement
+      // =======================================================
+      case "/editeur/evenement/liste":
+        liste.add(MaterialPage(child: EvenementListeView()));
+        break;
+
+      case "/editeur/evenement/ajouter":
+        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        break;
+
+      case "/editeur/evenement/modifier":
+        liste.add(MaterialPage(child: PersonnageModifierView()));
+        break;
+
+      case "/editeur/evenement/vue":
+        liste.add(MaterialPage(child: PersonnageVueView()));
+        break;
+
+      // =======================================================
       // Application - Personnage
       // =======================================================
       case "/editeur/personnage/liste":
@@ -138,6 +177,25 @@ class Routes {
 
       case "/editeur/lieu/vue":
         liste.add(MaterialPage(child: LieuVueView()));
+        break;
+
+      // =======================================================
+      // Application - Objet
+      // =======================================================
+      case "/editeur/objet/liste":
+        liste.add(MaterialPage(child: EvenementListeView()));
+        break;
+
+      case "/editeur/objet/ajouter":
+        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        break;
+
+      case "/editeur/objet/modifier":
+        liste.add(MaterialPage(child: PersonnageModifierView()));
+        break;
+
+      case "/editeur/objet/vue":
+        liste.add(MaterialPage(child: PersonnageVueView()));
         break;
     }
     return liste;

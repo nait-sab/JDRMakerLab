@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jdr_maker/controllers/evenement_controller.dart';
 import 'package:jdr_maker/controllers/lieu_controller.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
 import 'package:jdr_maker/controllers/personnage_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
+import 'package:jdr_maker/models/evenement_model.dart';
 import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/membre_model.dart';
 import 'package:jdr_maker/models/personnage_model.dart';
@@ -19,6 +21,7 @@ import 'package:provider/provider.dart';
 class ProjetController extends ChangeNotifier {
   /// Liste des projets
   List<ProjetModel> projets = [];
+  List<EvenementModel> evenements = [];
   List<PersonnageModel> personnages = [];
   List<LieuModel> lieux = [];
 
@@ -41,6 +44,11 @@ class ProjetController extends ChangeNotifier {
   /// Récupérer le projet actuel
   static ProjetModel? getProjet(BuildContext context) {
     return Provider.of<ProjetController>(context, listen: false).projet;
+  }
+
+  /// Récupérer les personnages du projet actuel
+  static List<EvenementModel> getEvenements(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).evenements;
   }
 
   /// Récupérer les personnages du projet actuel
@@ -74,6 +82,7 @@ class ProjetController extends ChangeNotifier {
       return;
     }
 
+    evenements = await EvenementController.chargerEvenements(projet!);
     personnages = await PersonnageController.chargerPersonnages(projet!);
     lieux = await LieuController.chargerLieux(projet!);
     membresModeles = await MembreController.chargerMembresModeles(projet!);
@@ -95,6 +104,7 @@ class ProjetController extends ChangeNotifier {
     print("Charger projet call");
 
     this.projet = projet;
+    evenements = await EvenementController.chargerEvenements(projet);
     personnages = await PersonnageController.chargerPersonnages(projet);
     lieux = await LieuController.chargerLieux(projet);
     membresModeles = await MembreController.chargerMembresModeles(projet);
@@ -117,6 +127,7 @@ class ProjetController extends ChangeNotifier {
 
     projet = null;
     projets = [];
+    evenements = [];
     personnages = [];
     lieux = [];
     membresModeles = [];
@@ -174,8 +185,17 @@ class ProjetController extends ChangeNotifier {
       return;
     }
 
+    for (EvenementModel evenement in evenements) {
+      await FirebaseServiceFirestore.supprimerDocument(EvenementModel.nomCollection, evenement.id);
+    }
+
     for (PersonnageModel personnage in personnages) {
-      await FirebaseServiceFirestore.supprimerDocument(PersonnageModel.nomCollection, personnage.id);
+      await FirebaseServiceFirestore.supprimerDocument(
+          PersonnageModel.nomCollection, personnage.id);
+    }
+
+    for (LieuModel lieu in lieux) {
+      await FirebaseServiceFirestore.supprimerDocument(LieuModel.nomCollection, lieu.id);
     }
 
     for (MembreModel membre in membresModeles) {
