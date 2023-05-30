@@ -69,7 +69,7 @@ class _ProfilViewState extends State<ProfilView> {
                     total: 0,
                   ),
                   ProfilScore(
-                    nom: "Projets",
+                    nom: "Projets aimés",
                     icone: Icons.favorite_rounded,
                     iconeCouleur: App.couleurs().rouge(),
                     total: 0,
