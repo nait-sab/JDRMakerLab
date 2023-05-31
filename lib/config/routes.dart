@@ -9,6 +9,10 @@ import 'package:jdr_maker/views/editeur/apps/lieu/lieu_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_modifier_view.dart';
 import 'package:jdr_maker/views/editeur/apps/lieu/lieu_vue_view.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/objet_ajouter_view.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/objet_liste_view.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/objet_modifier_view.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/objet_vue_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_ajouter_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_modifier_view.dart';
@@ -186,19 +190,19 @@ class Routes {
       // Application - Objet
       // =======================================================
       case "/editeur/objet/liste":
-        liste.add(MaterialPage(child: EvenementListeView()));
+        liste.add(MaterialPage(child: ObjetListeView()));
         break;
 
       case "/editeur/objet/ajouter":
-        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        liste.add(MaterialPage(child: ObjetAjouterView()));
         break;
 
       case "/editeur/objet/modifier":
-        liste.add(MaterialPage(child: PersonnageModifierView()));
+        liste.add(MaterialPage(child: ObjetModifierView()));
         break;
 
       case "/editeur/objet/vue":
-        liste.add(MaterialPage(child: PersonnageVueView()));
+        liste.add(MaterialPage(child: ObjetVueView()));
         break;
     }
     return liste;
