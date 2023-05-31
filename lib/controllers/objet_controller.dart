@@ -18,16 +18,16 @@ class ObjetController extends ChangeNotifier {
     notifyListeners();
   }
 
-  static void changerEvenement(BuildContext context, ObjetModel objet) {
+  static void changerObjet(BuildContext context, ObjetModel objet) {
     Provider.of<ObjetController>(context, listen: false)._actualiser(objet);
   }
 
-  static ObjetModel? getEvenement(BuildContext context) {
+  static ObjetModel? getObjet(BuildContext context) {
     return Provider.of<ObjetController>(context, listen: false).objet;
   }
 
-  /// Charger les événements du [projet] demandé
-  static Future<List<ObjetModel>> chargerEvenements(ProjetModel projet) async {
+  /// Charger les objets du [projet] demandé
+  static Future<List<ObjetModel>> chargerObjets(ProjetModel projet) async {
     List<ObjetModel> liste = [];
 
     await FirebaseServiceFirestore.getListe(ObjetModel.nomCollection, (data) {

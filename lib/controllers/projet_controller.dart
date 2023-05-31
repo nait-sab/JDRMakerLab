@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:jdr_maker/controllers/evenement_controller.dart';
 import 'package:jdr_maker/controllers/lieu_controller.dart';
 import 'package:jdr_maker/controllers/membre_controller.dart';
+import 'package:jdr_maker/controllers/objet_controller.dart';
 import 'package:jdr_maker/controllers/personnage_controller.dart';
+import 'package:jdr_maker/controllers/systeme_controller.dart';
 import 'package:jdr_maker/controllers/utilisateur_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/models/evenement_model.dart';
 import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/membre_model.dart';
+import 'package:jdr_maker/models/objet_model.dart';
 import 'package:jdr_maker/models/personnage_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
+import 'package:jdr_maker/models/systeme_model.dart';
 import 'package:jdr_maker/models/utilisateur_model.dart';
 import 'package:provider/provider.dart';
 
@@ -21,9 +25,13 @@ import 'package:provider/provider.dart';
 class ProjetController extends ChangeNotifier {
   /// Liste des projets
   List<ProjetModel> projets = [];
+
+  /// Applications
+  List<SystemeModel> systemes = [];
   List<EvenementModel> evenements = [];
   List<PersonnageModel> personnages = [];
   List<LieuModel> lieux = [];
+  List<ObjetModel> objets = [];
 
   // Membres
   List<MembreModel> membresModeles = [];
@@ -46,7 +54,12 @@ class ProjetController extends ChangeNotifier {
     return Provider.of<ProjetController>(context, listen: false).projet;
   }
 
-  /// Récupérer les personnages du projet actuel
+  /// Récupérer les systèmes du projet actuel
+  static List<SystemeModel> getSystemes(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).systemes;
+  }
+
+  /// Récupérer les événements du projet actuel
   static List<EvenementModel> getEvenements(BuildContext context) {
     return Provider.of<ProjetController>(context, listen: false).evenements;
   }
@@ -56,9 +69,14 @@ class ProjetController extends ChangeNotifier {
     return Provider.of<ProjetController>(context, listen: false).personnages;
   }
 
-  /// Récupérer les personnages du projet actuel
+  /// Récupérer les lieux du projet actuel
   static List<LieuModel> getLieux(BuildContext context) {
     return Provider.of<ProjetController>(context, listen: false).lieux;
+  }
+
+  /// Récupérer les objets du projet actuel
+  static List<ObjetModel> getObjets(BuildContext context) {
+    return Provider.of<ProjetController>(context, listen: false).objets;
   }
 
   /// Récupérer les modèles des membres du projet actuel
@@ -82,9 +100,12 @@ class ProjetController extends ChangeNotifier {
       return;
     }
 
+    systemes = await SystemeController.chargerSystemes(projet!);
     evenements = await EvenementController.chargerEvenements(projet!);
     personnages = await PersonnageController.chargerPersonnages(projet!);
     lieux = await LieuController.chargerLieux(projet!);
+    objets = await ObjetController.chargerObjets(projet!);
+
     membresModeles = await MembreController.chargerMembresModeles(projet!);
     membres = await UtilisateurController.chargerMembres(membresModeles);
 
@@ -104,9 +125,13 @@ class ProjetController extends ChangeNotifier {
     print("Charger projet call");
 
     this.projet = projet;
+
+    systemes = await SystemeController.chargerSystemes(projet);
     evenements = await EvenementController.chargerEvenements(projet);
     personnages = await PersonnageController.chargerPersonnages(projet);
     lieux = await LieuController.chargerLieux(projet);
+    objets = await ObjetController.chargerObjets(projet);
+
     membresModeles = await MembreController.chargerMembresModeles(projet);
     membres = await UtilisateurController.chargerMembres(membresModeles);
 
@@ -127,9 +152,13 @@ class ProjetController extends ChangeNotifier {
 
     projet = null;
     projets = [];
+
+    systemes = [];
     evenements = [];
     personnages = [];
     lieux = [];
+    objets = [];
+
     membresModeles = [];
     membres = [];
 
@@ -185,17 +214,27 @@ class ProjetController extends ChangeNotifier {
       return;
     }
 
+    for (SystemeModel systeme in systemes) {
+      await FirebaseServiceFirestore.supprimerDocument(SystemeModel.nomCollection, systeme.id);
+    }
+
     for (EvenementModel evenement in evenements) {
       await FirebaseServiceFirestore.supprimerDocument(EvenementModel.nomCollection, evenement.id);
     }
 
     for (PersonnageModel personnage in personnages) {
       await FirebaseServiceFirestore.supprimerDocument(
-          PersonnageModel.nomCollection, personnage.id);
+        PersonnageModel.nomCollection,
+        personnage.id,
+      );
     }
 
     for (LieuModel lieu in lieux) {
       await FirebaseServiceFirestore.supprimerDocument(LieuModel.nomCollection, lieu.id);
+    }
+
+    for (ObjetModel objet in objets) {
+      await FirebaseServiceFirestore.supprimerDocument(ObjetModel.nomCollection, objet.id);
     }
 
     for (MembreModel membre in membresModeles) {

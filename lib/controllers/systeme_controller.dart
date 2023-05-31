@@ -18,16 +18,16 @@ class SystemeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  static void changerEvenement(BuildContext context, SystemeModel systeme) {
+  static void changerSysteme(BuildContext context, SystemeModel systeme) {
     Provider.of<SystemeController>(context, listen: false)._actualiser(systeme);
   }
 
-  static SystemeModel? getEvenement(BuildContext context) {
+  static SystemeModel? getSysteme(BuildContext context) {
     return Provider.of<SystemeController>(context, listen: false).systeme;
   }
 
-  /// Charger les événements du [projet] demandé
-  static Future<List<SystemeModel>> chargerEvenements(ProjetModel projet) async {
+  /// Charger les systèmes du [projet] demandé
+  static Future<List<SystemeModel>> chargerSystemes(ProjetModel projet) async {
     List<SystemeModel> liste = [];
 
     await FirebaseServiceFirestore.getListe(SystemeModel.nomCollection, (data) {
