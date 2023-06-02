@@ -78,7 +78,7 @@ class _EditeurViewState extends State<EditeurView> {
                     route: "/editeur/systeme/liste",
                     icone: Icons.warning_rounded,
                     iconeCouleur: App.couleurs().jaune(),
-                    total: 0,
+                    total: projetController.systemes.length,
                   ),
                   EditeurApplication(
                     nom: "Événements",
@@ -106,7 +106,7 @@ class _EditeurViewState extends State<EditeurView> {
                     route: "/editeur/objet/liste",
                     icone: Icons.diamond_rounded,
                     iconeCouleur: App.couleurs().bleu(),
-                    total: 0,
+                    total: projetController.objets.length,
                   ),
                 ],
               ),

@@ -17,6 +17,10 @@ import 'package:jdr_maker/views/editeur/apps/personnage/personnage_ajouter_view.
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_liste_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_modifier_view.dart';
 import 'package:jdr_maker/views/editeur/apps/personnage/personnage_vue_view.dart';
+import 'package:jdr_maker/views/editeur/apps/systeme/systeme_ajouter_view.dart';
+import 'package:jdr_maker/views/editeur/apps/systeme/systeme_liste_view.dart';
+import 'package:jdr_maker/views/editeur/apps/systeme/systeme_modifier_view.dart';
+import 'package:jdr_maker/views/editeur/apps/systeme/systeme_vue_view.dart';
 import 'package:jdr_maker/views/editeur/editeur_view.dart';
 import 'package:jdr_maker/views/explorer/explorer_view.dart';
 import 'package:jdr_maker/views/jouer/jouer_view.dart';
@@ -114,19 +118,19 @@ class Routes {
       // Application - Système
       // =======================================================
       case "/editeur/systeme/liste":
-        liste.add(MaterialPage(child: EvenementListeView()));
+        liste.add(MaterialPage(child: SystemeListeView()));
         break;
 
       case "/editeur/systeme/ajouter":
-        liste.add(MaterialPage(child: PersonnageAjouterView()));
+        liste.add(MaterialPage(child: SystemeAjouterView()));
         break;
 
       case "/editeur/systeme/modifier":
-        liste.add(MaterialPage(child: PersonnageModifierView()));
+        liste.add(MaterialPage(child: SystemeModifierView()));
         break;
 
       case "/editeur/systeme/vue":
-        liste.add(MaterialPage(child: PersonnageVueView()));
+        liste.add(MaterialPage(child: SystemeVueView()));
         break;
 
       // =======================================================
