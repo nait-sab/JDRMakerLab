@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
-import 'package:jdr_maker/controllers/lieu_controller.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/controllers/systeme_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
-import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/models/systeme_model.dart';
 import 'package:jdr_maker/templates/chargement.dart';
 import 'package:jdr_maker/tools/generateur_tool.dart';
-import 'package:jdr_maker/views/editeur/apps/lieu/widget/lieu_modifier_formulaire.dart';
 import 'package:jdr_maker/views/editeur/apps/systeme/widget/systeme_modifier_formulaire.dart';
 
 class SystemeModifierView extends StatefulWidget {

@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/models/systeme_model.dart';
+import 'package:jdr_maker/templates/champs/champ_texte.dart';
 
 class SystemeVueContenu extends StatelessWidget {
   final SystemeModel systeme;
@@ -56,12 +60,12 @@ class SystemeVueContenu extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text(
-          systeme.contenu,
-          style: TextStyle(
-            color: App.couleurs().texte(),
-            fontSize: App.fontSize().normal(),
+        ChampTexte(
+          controller: QuillController(
+            document: Document.fromJson(jsonDecode(systeme.contenu)),
+            selection: TextSelection.fromPosition(TextPosition(offset: 0)),
           ),
+          modifiable: false,
         ),
       ],
     );

@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/controllers/navigation_controller.dart';
 import 'package:jdr_maker/models/systeme_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
+import 'package:jdr_maker/templates/champs/champ_texte.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
 
 class SystemeModifierFormulaire extends StatefulWidget {
@@ -21,11 +25,16 @@ class SystemeModifierFormulaire extends StatefulWidget {
 
 class _SystemeModifierFormulaireState extends State<SystemeModifierFormulaire> {
   late TextEditingController nom;
+  late QuillController contenu;
 
   @override
   void initState() {
     super.initState();
     nom = TextEditingController(text: widget.systeme.nom);
+    contenu = QuillController(
+      document: Document.fromJson(jsonDecode(widget.systeme.contenu)),
+      selection: TextSelection.fromPosition(TextPosition(offset: 0)),
+    );
     nom.addListener(() => setState(() {}));
   }
 
@@ -71,6 +80,20 @@ class _SystemeModifierFormulaireState extends State<SystemeModifierFormulaire> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Contenu",
+                      style: TextStyle(
+                        color: App.couleurs().important(),
+                        fontSize: App.fontSize().normal(),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    ChampTexte(
+                      controller: contenu,
+                      modifiable: true,
+                    ),
+                    SizedBox(height: 100),
                   ],
                 ),
               ),
