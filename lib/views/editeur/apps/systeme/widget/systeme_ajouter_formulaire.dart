@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
+import 'package:jdr_maker/templates/champs/champ_texte.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
 
 class SystemeAjouterFormulaire extends StatefulWidget {
@@ -17,11 +21,13 @@ class SystemeAjouterFormulaire extends StatefulWidget {
 
 class _SystemeAjouterFormulaireState extends State<SystemeAjouterFormulaire> {
   late TextEditingController nom;
+  late QuillController contenu;
 
   @override
   void initState() {
     super.initState();
     nom = TextEditingController();
+    contenu = QuillController.basic();
     nom.addListener(() => setState(() {}));
   }
 
@@ -67,6 +73,20 @@ class _SystemeAjouterFormulaireState extends State<SystemeAjouterFormulaire> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Contenu",
+                      style: TextStyle(
+                        color: App.couleurs().important(),
+                        fontSize: App.fontSize().normal(),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    ChampTexte(
+                      controller: contenu,
+                      modifiable: true,
+                    ),
+                    SizedBox(height: 100),
                   ],
                 ),
               ),
@@ -86,7 +106,10 @@ class _SystemeAjouterFormulaireState extends State<SystemeAjouterFormulaire> {
     return Align(
       alignment: Alignment.bottomRight,
       child: BoutonIcone(
-        action: () => widget.creer(nom.text, ""),
+        action: () => widget.creer(
+          nom.text,
+          jsonEncode(contenu.document.toDelta().toJson()).toString(),
+        ),
         icone: Icons.done_rounded,
       ),
     );
