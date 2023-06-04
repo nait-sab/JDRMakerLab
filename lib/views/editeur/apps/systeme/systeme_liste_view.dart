@@ -45,7 +45,7 @@ class _SystemeListeViewState extends State<SystemeListeView> {
       isTriAscDate = true;
       isTriDescNom = false;
       isTriDescDate = false;
-      systemes.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+      systemes.sort((a, b) => b.dateModification.compareTo(a.dateModification));
     });
   }
 
@@ -65,7 +65,7 @@ class _SystemeListeViewState extends State<SystemeListeView> {
       isTriAscDate = false;
       isTriDescNom = false;
       isTriDescDate = true;
-      systemes.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+      systemes.sort((a, b) => a.dateModification.compareTo(b.dateModification));
     });
   }
 

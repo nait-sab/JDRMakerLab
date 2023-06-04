@@ -63,7 +63,7 @@ class _EvenementListeViewState extends State<EvenementListeView> {
       isTriAscDate = true;
       isTriDescNom = false;
       isTriDescDate = false;
-      evenements.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+      evenements.sort((a, b) => b.dateModification.compareTo(a.dateModification));
     });
   }
 
@@ -99,7 +99,7 @@ class _EvenementListeViewState extends State<EvenementListeView> {
       isTriAscDate = false;
       isTriDescNom = false;
       isTriDescDate = true;
-      evenements.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+      evenements.sort((a, b) => a.dateModification.compareTo(b.dateModification));
     });
   }
 

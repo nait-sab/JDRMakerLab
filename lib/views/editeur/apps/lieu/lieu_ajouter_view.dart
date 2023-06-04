@@ -25,7 +25,7 @@ class _LieuAjouterViewState extends State<LieuAjouterView> {
     chargement = false;
   }
 
-  Future creer(String nom, String description) async {
+  Future creer(String nom, String description, String urlImage) async {
     rafraichir();
     String id = GenerateurTool.genererID();
     String date = GenerateurTool.genererDateActuelle();
@@ -35,7 +35,7 @@ class _LieuAjouterViewState extends State<LieuAjouterView> {
       id: id,
       idCreateur: UtilisateurController.getUtilisateur(context)!.id,
       idProjet: projet.id,
-      urlImage: "",
+      urlImage: urlImage,
       nom: nom,
       description: description,
       dateModification: date,
@@ -44,7 +44,10 @@ class _LieuAjouterViewState extends State<LieuAjouterView> {
     projet.derniereModification = date;
     await FirebaseServiceFirestore.ajouterDocumentID(LieuModel.nomCollection, id, lieu.toMap());
     await FirebaseServiceFirestore.modifierDocument(
-        ProjetModel.nomCollection, projet.id, projet.toMap());
+      ProjetModel.nomCollection,
+      projet.id,
+      projet.toMap(),
+    );
     await actualiser();
     rafraichir();
     changerRoute("/editeur/lieu/liste");

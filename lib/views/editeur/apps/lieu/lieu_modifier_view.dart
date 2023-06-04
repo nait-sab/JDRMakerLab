@@ -25,13 +25,14 @@ class _LieuModifierViewState extends State<LieuModifierView> {
     chargement = false;
   }
 
-  Future modifier(String nom, String description) async {
+  Future modifier(String nom, String description, String urlImage) async {
     rafraichir();
     String date = GenerateurTool.genererDateActuelle();
     ProjetModel projet = ProjetController.getProjet(context)!;
     LieuModel lieu = LieuController.getLieu(context)!;
     lieu.nom = nom;
     lieu.description = description;
+    lieu.urlImage = urlImage;
     lieu.dateModification = date;
     projet.derniereModification = date;
 

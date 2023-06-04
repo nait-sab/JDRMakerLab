@@ -4,6 +4,7 @@ import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/champs/champ_zone.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
+import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_image.dart';
 
 class LieuAjouterFormulaire extends StatefulWidget {
   final Function creer;
@@ -19,14 +20,18 @@ class LieuAjouterFormulaire extends StatefulWidget {
 class _LieuAjouterFormulaireState extends State<LieuAjouterFormulaire> {
   late TextEditingController nom;
   late TextEditingController description;
+  late String urlImage;
 
   @override
   void initState() {
     super.initState();
     nom = TextEditingController();
     description = TextEditingController();
+    urlImage = "";
     nom.addListener(() => setState(() {}));
   }
+
+  void changerImage(String urlImage) => setState(() => this.urlImage = urlImage);
 
   @override
   Widget build(BuildContext context) {
@@ -44,31 +49,53 @@ class _LieuAjouterFormulaireState extends State<LieuAjouterFormulaire> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Nom",
-                      style: TextStyle(
-                        color: App.couleurs().important(),
-                        fontSize: App.fontSize().normal(),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    ChampSaisie(
-                      controller: nom,
-                      couleurFond: App.couleurs().fondPrincipale(),
-                      couleurSaisie: App.couleurs().texte(),
-                      couleurPlaceholder: App.couleurs().texte(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: App.couleurs().texte(),
-                          width: 3,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 150,
+                          width: 180,
+                          child: EditeurApplicationImage(
+                            modifiable: true,
+                            urlIcone: urlImage,
+                            changerImage: changerImage,
+                          ),
                         ),
-                      ),
-                      focusBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: App.couleurs().violet(),
-                          width: 3,
+                        SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Nom",
+                                style: TextStyle(
+                                  color: App.couleurs().important(),
+                                  fontSize: App.fontSize().normal(),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ChampSaisie(
+                                controller: nom,
+                                couleurFond: App.couleurs().fondPrincipale(),
+                                couleurSaisie: App.couleurs().texte(),
+                                couleurPlaceholder: App.couleurs().texte(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: App.couleurs().texte(),
+                                    width: 3,
+                                  ),
+                                ),
+                                focusBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: App.couleurs().violet(),
+                                    width: 3,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                     SizedBox(height: 20),
                     Text(
@@ -116,7 +143,7 @@ class _LieuAjouterFormulaireState extends State<LieuAjouterFormulaire> {
     return Align(
       alignment: Alignment.bottomRight,
       child: BoutonIcone(
-        action: () => widget.creer(nom.text, description.text),
+        action: () => widget.creer(nom.text, description.text, urlImage),
         icone: Icons.done_rounded,
       ),
     );

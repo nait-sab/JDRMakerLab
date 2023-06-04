@@ -5,7 +5,6 @@ import 'package:jdr_maker/controllers/objet_controller.dart';
 import 'package:jdr_maker/controllers/projet_controller.dart';
 import 'package:jdr_maker/firebase/firebase_service_firestore.dart';
 import 'package:jdr_maker/interface/app_interface.dart';
-import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/models/objet_model.dart';
 import 'package:jdr_maker/models/projet_model.dart';
 import 'package:jdr_maker/templates/chargement.dart';
@@ -26,18 +25,19 @@ class _ObjetModifierViewState extends State<ObjetModifierView> {
     chargement = false;
   }
 
-  Future modifier(String nom, String description) async {
+  Future modifier(String nom, String description, String urlImage) async {
     rafraichir();
     String date = GenerateurTool.genererDateActuelle();
     ProjetModel projet = ProjetController.getProjet(context)!;
     ObjetModel objet = ObjetController.getObjet(context)!;
     objet.nom = nom;
     objet.description = description;
+    objet.urlImage = urlImage;
     objet.dateModification = date;
     projet.derniereModification = date;
 
     await FirebaseServiceFirestore.modifierDocument(
-      LieuModel.nomCollection,
+      ObjetModel.nomCollection,
       objet.id,
       objet.toMap(),
     );

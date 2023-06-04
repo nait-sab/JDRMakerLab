@@ -63,7 +63,7 @@ class _PersonnageListeViewState extends State<PersonnageListeView> {
       isTriDescNom = false;
       isTriDescOccupation = false;
       isTriDescDate = false;
-      personnages.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+      personnages.sort((a, b) => b.dateModification.compareTo(a.dateModification));
     });
   }
 
@@ -99,7 +99,7 @@ class _PersonnageListeViewState extends State<PersonnageListeView> {
       isTriDescNom = false;
       isTriDescOccupation = false;
       isTriDescDate = true;
-      personnages.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+      personnages.sort((a, b) => a.dateModification.compareTo(b.dateModification));
     });
   }
 

@@ -45,7 +45,7 @@ class _ObjetListeViewState extends State<ObjetListeView> {
       isTriAscDate = true;
       isTriDescNom = false;
       isTriDescDate = false;
-      objets.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+      objets.sort((a, b) => b.dateModification.compareTo(a.dateModification));
     });
   }
 
@@ -65,7 +65,7 @@ class _ObjetListeViewState extends State<ObjetListeView> {
       isTriAscDate = false;
       isTriDescNom = false;
       isTriDescDate = true;
-      objets.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+      objets.sort((a, b) => a.dateModification.compareTo(b.dateModification));
     });
   }
 

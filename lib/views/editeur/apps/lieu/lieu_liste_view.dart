@@ -45,7 +45,7 @@ class _LieuListeViewState extends State<LieuListeView> {
       isTriAscDate = true;
       isTriDescNom = false;
       isTriDescDate = false;
-      lieux.sort((a, b) => a.dateModification.compareTo(b.dateModification));
+      lieux.sort((a, b) => b.dateModification.compareTo(a.dateModification));
     });
   }
 
@@ -65,7 +65,7 @@ class _LieuListeViewState extends State<LieuListeView> {
       isTriAscDate = false;
       isTriDescNom = false;
       isTriDescDate = true;
-      lieux.sort((a, b) => b.dateModification.compareTo(a.dateModification));
+      lieux.sort((a, b) => a.dateModification.compareTo(b.dateModification));
     });
   }
 

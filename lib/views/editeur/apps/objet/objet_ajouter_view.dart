@@ -25,7 +25,7 @@ class _ObjetAjouterViewState extends State<ObjetAjouterView> {
     chargement = false;
   }
 
-  Future creer(String nom, String description) async {
+  Future creer(String nom, String description, String urlImage) async {
     rafraichir();
     String id = GenerateurTool.genererID();
     String date = GenerateurTool.genererDateActuelle();
@@ -35,7 +35,7 @@ class _ObjetAjouterViewState extends State<ObjetAjouterView> {
       id: id,
       idCreateur: UtilisateurController.getUtilisateur(context)!.id,
       idProjet: projet.id,
-      urlImage: "",
+      urlImage: urlImage,
       nom: nom,
       description: description,
       dateModification: date,
