@@ -3,8 +3,8 @@ import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/champs/champ_zone.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/widgets/objet_image.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
-import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_image.dart';
 
 class ObjetAjouterFormulaire extends StatefulWidget {
   final Function creer;
@@ -55,7 +55,7 @@ class _ObjetAjouterFormulaireState extends State<ObjetAjouterFormulaire> {
                         SizedBox(
                           height: 150,
                           width: 180,
-                          child: EditeurApplicationImage(
+                          child: ObjetImage(
                             modifiable: true,
                             urlIcone: urlImage,
                             changerImage: changerImage,

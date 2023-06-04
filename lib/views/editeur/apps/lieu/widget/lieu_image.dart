@@ -6,12 +6,12 @@ import 'package:jdr_maker/firebase/firebase_service_storage.dart';
 import 'package:jdr_maker/templates/boutons/bouton.dart';
 import 'package:jdr_maker/tools/image_tool.dart';
 
-class EditeurApplicationImage extends StatelessWidget {
+class LieuImage extends StatelessWidget {
   final bool modifiable;
   final String urlIcone;
   final Function changerImage;
 
-  EditeurApplicationImage({
+  LieuImage({
     required this.modifiable,
     required this.urlIcone,
     Function? changerImage,
@@ -21,9 +21,12 @@ class EditeurApplicationImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: getPhoto(),
+        Padding(
+          padding: EdgeInsets.only(right: 70),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: getPhoto(),
+          ),
         ),
         Align(
           alignment: Alignment.topRight,
@@ -40,19 +43,19 @@ class EditeurApplicationImage extends StatelessWidget {
   Widget getPhoto() {
     if (urlIcone == "") {
       return Container(
-        width: 150,
-        height: 150,
+        width: double.infinity,
+        height: 200,
         decoration: BoxDecoration(
           color: App.couleurs().important().withOpacity(0.5),
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(20),
         ),
       );
     }
 
     return Image.network(
       urlIcone,
-      width: 150,
-      height: 150,
+      width: double.infinity,
+      height: 200,
     );
   }
 

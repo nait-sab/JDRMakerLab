@@ -5,8 +5,8 @@ import 'package:jdr_maker/models/lieu_model.dart';
 import 'package:jdr_maker/templates/boutons/bouton_icone.dart';
 import 'package:jdr_maker/templates/champs/champ_saisie.dart';
 import 'package:jdr_maker/templates/champs/champ_zone.dart';
+import 'package:jdr_maker/views/editeur/apps/lieu/widget/lieu_image.dart';
 import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_entete.dart';
-import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_image.dart';
 
 class LieuModifierFormulaire extends StatefulWidget {
   final LieuModel lieu;
@@ -53,53 +53,41 @@ class _LieuModifierFormulaireState extends State<LieuModifierFormulaire> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 150,
-                          width: 180,
-                          child: EditeurApplicationImage(
-                            modifiable: true,
-                            urlIcone: urlImage,
-                            changerImage: changerImage,
-                          ),
+                    Text(
+                      "Nom",
+                      style: TextStyle(
+                        color: App.couleurs().important(),
+                        fontSize: App.fontSize().normal(),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    ChampSaisie(
+                      controller: nom,
+                      couleurFond: App.couleurs().fondPrincipale(),
+                      couleurSaisie: App.couleurs().texte(),
+                      couleurPlaceholder: App.couleurs().texte(),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: App.couleurs().texte(),
+                          width: 3,
                         ),
-                        SizedBox(width: 20),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Nom",
-                                style: TextStyle(
-                                  color: App.couleurs().important(),
-                                  fontSize: App.fontSize().normal(),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              ChampSaisie(
-                                controller: nom,
-                                couleurFond: App.couleurs().fondPrincipale(),
-                                couleurSaisie: App.couleurs().texte(),
-                                couleurPlaceholder: App.couleurs().texte(),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: App.couleurs().texte(),
-                                    width: 3,
-                                  ),
-                                ),
-                                focusBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: App.couleurs().violet(),
-                                    width: 3,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                      ),
+                      focusBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: App.couleurs().violet(),
+                          width: 3,
                         ),
-                      ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 200,
+                      width: double.infinity,
+                      child: LieuImage(
+                        modifiable: true,
+                        urlIcone: urlImage,
+                        changerImage: changerImage,
+                      ),
                     ),
                     SizedBox(height: 20),
                     Text(

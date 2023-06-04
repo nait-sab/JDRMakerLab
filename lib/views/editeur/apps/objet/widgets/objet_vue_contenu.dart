@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jdr_maker/config/app.dart';
 import 'package:jdr_maker/models/objet_model.dart';
-import 'package:jdr_maker/views/editeur/apps/widgets/editeur_application_image.dart';
+import 'package:jdr_maker/views/editeur/apps/objet/widgets/objet_image.dart';
 
 class ObjetVueContenu extends StatelessWidget {
   final ObjetModel objet;
@@ -24,7 +24,7 @@ class ObjetVueContenu extends StatelessWidget {
                 SizedBox(
                   height: 150,
                   width: 180,
-                  child: EditeurApplicationImage(
+                  child: ObjetImage(
                     modifiable: false,
                     urlIcone: objet.urlImage,
                   ),
